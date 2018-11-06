@@ -1,0 +1,110 @@
+{% extends "JevislaMapBundle::layout.html.twig" %}
+
+{% block body %}
+    <div class="container slider"  >
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10" >
+                <!-- zone des avertissements -->
+                <div class="formFG success col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <span class="closebtn">&times;</span>  
+                    <strong>Confirmation !</strong> Nouvelles coordonnées enregistrées avec succès
+                    <br>
+                </div>
+            </div>
+            <div class="col-md-10 col-sm-12 col-xs-12">
+                 <div style="cursor: help;" class="col-md-8 col-sm-8 col-xs-8 popup" onclick="aideUser();">
+                    <span class="glyphicon glyphicon-info-sign text-info pull-left"></span>
+                    <div class="popuptext" id="myPopup">
+                        <div>
+                            <p class="messagePopup">Saisie assistée (adresses fiabilisées),
+                                <span class="label label-warning">
+                                    une adresse proposée sans le numéro saisi n'existe pas ! 
+                                </span>
+                                <br>Format de saisie :  
+                                <span class="label label-info" >
+                                    ( n°, type, nom de voie, ville ou code postal )
+                                </span>
+                            </p>
+                        </div>    
+                        <div class="zonetext" id="myZone">
+                            <p class="messagePopup">La zone de contact circonscrit par qui votre <span class="label label-danger">marqueur Google</span> ainsi que les informations   
+                                <span class="label label-default">de votre étiquette google</span> seront visibles : c'est votre zone d'échange. <span class="label label-danger">Vous pouvez la modifier et la valider.</span> Vous définissez  
+                                vos informations personnelles en remplissant votre fiche Google Map : en cliquant sur le bouton <span class="label label-success">FicheGoogleMap</span>. 
+                            </p>
+                        </div>
+                        <div >
+                            <p class="messagePopup">
+                                Pour afficher les <span class="label label-success">fiches GoogleMap</span> <span class="label label-warning">double-cliquez</span> sur l'icône du marqueur sélectionné.</span>
+                            </p>
+                        </div>
+                    </div>
+                 </div><br>
+                <br>
+                {% for flashbags in app.session.flashbag.get('notice') %}
+                    <div class="panel panel-success affichezFGM">
+                        <div class="panel-heading">
+                            <p class="panel-title"> {{ flashbags }}
+                                <a style="cursor: grabbing;" class="pull-right">X</a>
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %} 
+                <div class="col-md-offset-1 col-md-11 col-sm-offset-1 col-sm-11 col-xs-offset-0 col-xs-12">
+                    <input class="inputLocalisation" name="loca" id="adresse" type="text" placeholder="Adresse (N°, Voie, Nom...)" > 
+                    <input id="recupAdr" for="loca"  class="btn btn-primary" type="submit" value="Localiser">
+                </div>  
+            </div>
+            <br>
+            <div class="col-md-12" style="margin-top: 20px;">
+                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <button style="cursor: help;" class="col-md-offset-1 col-md-2 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-7 btn btn-info myZone" type="submit" onclick="zoneContact();" class="">
+                        Zone de Contact
+                    </button>    
+                    <button id="sauvegarde" class="col-md-offset-0 col-md-2 col-sm-offset-0 col-sm-3 col-xs-offset-1 col-xs-7 btn btn-warning" type="submit" onclick="validCoordonnees();" class="">
+                        Valider zone
+                    </button>
+                    <a id="ficheGM" data-toggle="collapse" class="col-md-offset-0 col-md-2 col-sm-offset-0 col-sm-3 col-xs-offset-1 col-xs-7 btn btn-success FGM_toggleable glyphicon glyphicon-hand-right" type="submit" href="#itemFGM" >
+                        FicheGoogleMap
+                    </a>
+                 </div><br>
+                <div id="itemFGM" class="collapse">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-10 col-sm-10 col-xs-12">
+                                <div class="panel panel-success">
+                                    <div class="panel-heading ">
+                                        <h3 class="panel-title" >Fiche Google Map</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row"> 
+                                            {{ render(controller("JevislaMapBundle:Map:formFicheUserGM")) }}    
+                                        </div>
+                                    </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div> 
+                <div class="col-md-9 col-sm-8 col-xs-12 corpsVoisins">
+                    <div id="map"></div>
+                </div>
+                
+                <div class="col-md-3 col-sm-4 col-xs-12 corpsVoisins">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2 class="panel-title">Mes voisins</h2>
+                        </div>
+                        <div class="panel-body">
+                            <div id="voisinFiche"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+            <br>
+        </div>
+    </div>   
+{% endblock %}
+ 
+{% block javascripts %}   
+ {{ parent() }}    
+{% endblock javascripts %} 

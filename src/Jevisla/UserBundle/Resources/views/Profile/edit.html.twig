@@ -1,0 +1,15 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% block entete %}  
+    <div class="container">
+        <div class="panel panel-primary slider" style="border: none;">
+            <div  class="panel-heading">
+                <h2 class="panel-title">
+                    Modification profil
+                </h2>
+            </div>
+        </div>
+    </div>  
+{% endblock entete %}   
+{% block fos_user_content %}
+    {% include "@FOSUser/Profile/edit_content.html.twig" %}
+{% endblock fos_user_content %}

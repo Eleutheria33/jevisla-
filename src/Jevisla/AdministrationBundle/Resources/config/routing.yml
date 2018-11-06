@@ -1,0 +1,34 @@
+jevisla_administration_home:
+    path:     /category/{page}
+    defaults:
+        _controller: JevislaAdministrationBundle:Administration:indexCategory 
+        page:        1
+    requirements:
+        page: \d*
+        
+jevisla_administration_view:
+    path:     /category/view/{id}
+    defaults: 
+        _controller: JevislaAdministrationBundle:Administration:viewCategory 
+    requirements:
+        id: \d+    
+        
+jevisla_administration_add:
+    path:     /category/ajout
+    defaults: 
+        _controller: JevislaAdministrationBundle:Administration:addCategory 
+             
+
+jevisla_administration_updatecategory:
+    path:     /category/update/{id}
+    defaults: 
+        _controller: JevislaAdministrationBundle:Administration:updateCategory 
+    requirements:
+        id: \d+      
+    
+jevisla_administration_delete:
+    path:     /category/delete/{id}
+    defaults:
+        _controller: JevislaAdministrationBundle:Administration:deleteCategory 
+    requirements:
+        id: \d+      

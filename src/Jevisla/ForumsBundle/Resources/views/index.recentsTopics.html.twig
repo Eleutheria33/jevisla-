@@ -1,0 +1,42 @@
+{# Posts and Topic #}
+  
+    <div class="widget-content nopadding">
+        <ul class="recent-posts" style="list-style-type: none;">
+            {% for topic in topics|slice(0, 5) %}
+                {% if topic.user is not null %}
+                        {% set username = topic.user.username %}
+                        {% set email = '' %}
+                {% else %}
+                    {% set username = 'discutea.forum.deleted.user'|trans %}
+                    {% set email = topic.user.email %}
+                {% endif %}
+                <li class="panel-body">
+                    <div class="article-post">
+                        <span class="glyphicon glyphicon-usr"></span>
+                        <p>
+                            <span class="user-info" style="color:white;">
+                                {{ 'discutea.forum.by'|trans }} {{ username }} {{ topic.date|date("Y-m-d H:i:s") }}
+                            </span><br/>
+                            <span class="user-info" >
+                                <a style="color:black;" href="{{ path('discutea_forum_topic', {'slug': topic.forum.slug}) }}">
+                                    {{ topic.forum.name }}
+                                </a>
+                                <a style="color:black;" href="{{ path('discutea_forum_post', {'slug': topic.slug}) }}">
+                                    {{ topic.title }}
+                                </a>
+                            </span>
+                        </p>
+                        <div class="pull-right">
+                            <a style="color:black;" href="{{ path('discutea_forum_topic', {'slug': topic.forum.slug}) }}" class="btn btn-primary btn-xs">
+                                {{ 'discutea.forum.see'|trans }}
+                            </a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+         
+     
+

@@ -1,0 +1,20 @@
+{# empty Twig template #}
+{% extends "JevislaAdministrationBundle::layout.html.twig" %}
+
+{% block title %}
+  Modification catégorie alerte - {{ parent() }}
+{% endblock %}
+
+{% block entete %}  
+    <div class="container slider">
+        <div class="panel panel-info adminPanel">
+            <div  class="panel-heading">
+                <h1 class="panel-title adminPanelTitle">Modification</h1>
+            </div>
+        </div>
+    </div>  
+{% endblock entete %} 
+
+{% block body %}
+  {{ include("JevislaAdministrationBundle:Administration:categoryform.html.twig") }}
+{% endblock %}

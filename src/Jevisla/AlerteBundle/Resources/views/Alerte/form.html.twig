@@ -1,0 +1,104 @@
+{# src/Jevisla/AlerteBundle/Resources/views/form.html.twig #}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-offset-1 col-md-offset-1 col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
+            <div class="panel panel-info well plateformeAlerte">
+                <div class="panel-heading">
+                    <h3 class="panel-title alertFormCreat">Formulaire d'alerte</h3>
+                </div>
+                <br>  
+                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                    {# Les erreurs générales du formulaire. #}
+                    {{ form_errors(form) }}
+                    {# Génération du label + error + widget pour un champ. #}
+                    {# Idem pour un autre champ. #}
+                    {% if form.date is defined %}
+                        <div class="form-group"> <br>
+                            {{ form_label(form.date, "Date de parution", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                            {{ form_errors(form.date) }}
+                            <div class="col-sm-10">
+                                {{ form_widget(form.date) }}  
+                            </div>
+                        </div>  
+                    {% endif %}
+                    {# Génération manuelle et éclatée : #}
+                    <div class="form-group">
+                        {# Génération du label. #}
+                        {{ form_label(form.title, "Titre de l'alerte", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                        {# Affichage des erreurs pour ce champ précis. #}
+                        {{ form_errors(form.title) }}
+                        <div class="col-sm-10">
+                            {# Génération de l'input. #}
+                            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    {# Idem pour un autre champ. #}
+                    <div class="form-group">
+                             {{ form_errors(form.content) }} 
+                        <div class="col-sm-12">
+                            {{ form_widget(form.content, {'attr': {'class': 'form-control col-sm-12 col-xs-12 ckeditor'}}) }}
+                        </div>
+                    </div>
+                    {# Idem pour un autre champ. #}
+                    <div class="form-group">
+                        {% if form.published is defined %}  
+                                {{ form_label(form.published, "Publiée", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                                {{ form_errors(form.published) }}
+                                <div class="col-sm-10">
+                                    {{ form_widget(form.published) }}
+                                </div>
+                        {% endif %}
+                    </div> 
+                    {# Idem pour un autre champ. #}
+                    <div class="form-group ">
+                        {{ form_label(form.imageAlerte, "Image", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                        {{ form_errors(form.imageAlerte) }}
+                        <div class="col-md-6">
+                            {{ form_widget(form.imageAlerte) }}
+                        </div>
+                    </div>
+                    {% if imageAl is defined %}      
+                    <div class="form-group ">      
+                        <div >
+                            <div class="col-md-offset-2 col-md-6 "><img src="{{ asset(imageAl.webPath()) }}" alt="PhotoAlerte" class="img-rounded">
+                            </div>   
+                        </div>      
+                    </div>    
+                    {% endif %}    
+                   {# Idem pour un autre champ. #}
+                    <div class="form-group">
+                        {{ form_label(form.categories, "Catégorie", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                        {{ form_errors(form.categories) }}
+                        <div class="col-lg-6">
+                            {{ form_widget(form.categories) }}
+                        </div>
+                    </div> 
+                    <div class="form-group"> 
+                        <div>    
+                        {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+                        {{ form_label(form.enregistrer, "Enregistrement", {'label_attr': {'class': 'control-label'}}) }}
+                            <div class="col-md-3 pull-right">
+                                {{ form_widget(form.enregistrer, {'attr': {'class': 'btn btn-info'}}) }}
+                            </div>
+                            <div>
+                                <p>
+                                    <a href="{{ path('jevisla_alerte_home') }}" class="btn btn-info pull-right">
+                                        <i class="glyphicon glyphicon-chevron-left"></i>
+                                        Retour à l'accueil
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>    
+                    {# Génération automatique des champs pas encore écrits.
+                       le champ CSRF (géré automatiquement par Symfony !)
+                       et tous les champs cachés (type « hidden »). #}
+                    {{ form_rest(form) }}
+                    {# Fermeture de la balise <form> du formulaire HTML #}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>            

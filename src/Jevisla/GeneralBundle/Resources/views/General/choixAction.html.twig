@@ -1,0 +1,75 @@
+<div class="jumbotron choixActionAccueil" id="accueil">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+           <h1 class="choixActionAccueilTitle">Bienvenue
+               {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                <span class="pull-right pseudoAccueil">
+                    {{ app.user.prenom }}
+                </span>
+               {% endif %} 
+           </h1>
+        </div>
+    </div>
+    <div class="row contentAccueilMaster">
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+            <div class="content contentAccueil">
+                <h3>Des rencontres</h3>
+                <img class="contentPara" src="{{ asset('img/equipe.jpg') }}" alt="Des rencontres">
+                <p class="textBienvenue contentPara"><br>JeVisLà vous permet un contact direct avec vos voisins, votre environnement, 
+                votre quartier, votre village, votre ville, ses activités culturelles, associatives, privées, etc. Vous rencontrez, découvrez
+                des personnes, des gens, la courtoisie, le service, une certaine forme de <strong>solidarité</strong> émerge de ces
+                nouveaux rapports. Vous n'êtes plus seul(e)s en milieu urbain. 
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+            <div class="content contentAccueil">
+                <h3>Une messagerie</h3>
+                <img class="contentPara" src="{{ asset('img/messagerie.JPG') }}" alt="automne" title="messagerie JeVisLa">
+                <p class="textBienvenue contentPara"><br>Vous souhaitez correspondre avec un voisin pour des causes de nuisance sonore, un chien qui aboie, 
+                vous souhaitez avertir votre voisinage sur une soirée à venir : tout devient plus simple en communiquant par jevislà.fr.
+                Restaurer la courtoisie, dire les différends, parler de sécurité, proposer des services, en quelques clics <strong>nos espaces de vie
+                    se repeuplent.</strong></p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+            <div class="content contentAccueil">
+                <h3>Des alertes, des annonces</h3>
+                <img class="contentPara" src="{{ asset('img/alertesAccueil.jpg') }}" alt="les alertes">
+                <p class="textBienvenue contentPara"><br>Vous pouvez grâce aux alertes diffuser toute sorte d'offre ou demande. Vous recherchez votre animal,
+                vous vendez, vous achetez, vous proposez votre aide, ou vous en espérez, vous avez des soucis sécuritaires ou vous en redoutez, <strong>JeVisLà se veut être la plateforme
+                de la proximité et de la solidarité</strong> afin d'agir en équipe au coeur de vos quartiers. Notre plateforme vous offre une alternative aux circuits classiques.</p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+            <div class="content contentAccueil">
+                <h3>Une carte avec ses voisins</h3>
+                <img class="contentPara" src="{{ asset('img/carte.JPG') }}" alt="la carte du quartier">
+                <p class="textBienvenue contentPara"><br> 
+                A l'heure où se mondialisent les connexions, où des milliers d'individus nous survolent dans des avions qui se croisent et s'entrecroisent dans l'azur de nos villes,
+                où nous discutons avec des personnes de cités lointaines, aux quatre coins du monde, à cette heure-là donc, si nous reprenions également un dialogue
+                avec ceux qui sont le plus proches de nous...</p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+            <div class="content contentAccueil">
+                <h3>Un chatroom</h3>
+                <img class="contentPara" src="{{ asset('img/chatroom.JPG') }}" alt="chatter sur jevislà.fr">
+                <p class="textBienvenue contentPara"><br> 
+                Autre satisfaction : celle de partager des discussions en instantanée sur le chat. Le plaisir de se dire <strong>Tout</strong>
+                très vite ; de proposer des plans de jeux, des sorties, de papoter des actus ou du dernier match de votre équipe. Voire
+                de négocier un peu de calme avec <strong>vos voisin(e)s </strong>. 
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+            <div class="content contentAccueil">
+                <h3>Des forums</h3>
+                <img class="contentPara" src="{{ asset('img/forumsAccueil.jpg') }}" alt="Forums sur jevislà.fr">
+                <p class="textBienvenue contentPara"><br>Créer, participer, animer des forums autour des thèmes de votre choix. Rester au courant
+                des dernières actualités de votre espace de vie. Animaux ou objets perdus, différends, conflits, fêtes, animations, associations
+                organisations caritatives : toutes les actions locales sont sur vos forums. </p>
+            </div>
+        </div>        
+    </div>
+</div>

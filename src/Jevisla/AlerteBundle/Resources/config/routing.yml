@@ -1,0 +1,60 @@
+ 
+    
+jevisla_alerte_home:
+    path:      /annonce/{page} 
+    defaults:
+        _controller: JevislaAlerteBundle:Alerte:index
+        page:        1
+    requirements:
+        page: \d*
+        
+            
+jevisla_alerte_author:
+    path:      /annonce/{page}/{authorId}
+    defaults:
+        _controller: JevislaAlerteBundle:Alerte:author
+        page:        1
+    requirements:
+        page: \d*
+                      
+    
+jevisla_alerte_view:
+    path:      /annonce/alerte/{id}
+    defaults:
+        _controller: JevislaAlerteBundle:Alerte:view
+    requirements:
+        id: \d+
+
+jevisla_alerte_add:
+    path:      /annonce/add
+    defaults:
+        _controller: JevislaAlerteBundle:Alerte:add
+
+jevisla_alerte_edit:
+    path:      /annonce/edit/{id}
+    defaults:
+        _controller: JevislaAlerteBundle:Alerte:edit
+    requirements:
+        id: \d+
+
+jevisla_alerte_delete:
+    path:      /annonce/delete/{id}
+    defaults:
+        _controller: JevislaAlerteBundle:Alerte:delete
+    requirements:
+        id: \d+
+        
+jevisla_alerte_purge:
+    path:      /annonce/alerte/purge/{days}
+    defaults:
+        _controller: JevislaAlerteBundle:Alerte:purge
+        days: 5
+    requirements:
+        id: \d+
+        
+jevisla_alerte_reponseAlerte:
+    path:      /annonce/reponseAlerte{id} 
+    defaults:
+        _controller: JevislaAlerteBundle:Alerte:repondre
+    requirements:
+        id: \d+ 

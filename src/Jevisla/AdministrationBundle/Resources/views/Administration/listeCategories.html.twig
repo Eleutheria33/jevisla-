@@ -1,0 +1,45 @@
+{# empty Twig template #}
+{% extends "JevislaAdministrationBundle::layout.html.twig" %}
+
+{% block bodyAdmin %}
+    <div>
+        <a href="{{ path('jevisla_administration_add') }}" class="btn btn-info pull-left">
+            Création d'une catégorie
+            <i class="glyphicon glyphicon-chevron-right"></i>
+        </a>
+    </div>
+    <div class="panel panel-primary" style="margin-top: 70px; ">
+        <div class="panel-heading">
+            <h2 class="panel-title">Liste des catégories</h2>
+        </div>
+    </div>
+    <div>
+        <ul class="ulCatListAdmin">    
+            {% for categorie in listCategories %}
+                <li>
+                    <a href="{{ path('jevisla_administration_view', {'id': categorie.id}) }}">
+                        {{ categorie.name }}
+                    </a>
+                </li>
+            {% else %}
+                <div>Pas (encore !) de catégories</div>
+            {% endfor %}
+        </ul>
+    </div>
+    <ul class="pagination">
+        {% set pageRetour = page - 1  %}
+        <li>
+            <a href="{{ path('jevisla_administration_home', {'page': pageRetour} ) }}">&laquo;</a>
+        </li>
+        {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+        {% for p in range(1, nbPages) %}
+            <li{% if p == page %} class="active"{% endif %}>
+                <a href="{{ path('jevisla_administration_home', {'page': p}) }}">{{ p }}</a>
+            </li>
+        {% endfor %}
+        {% set pageAvant = page + 1  %}
+        <li>
+            <a href="{{ path('jevisla_administration_home', {'page': pageAvant}) }}">&raquo;</a>
+        </li>
+    </ul>      
+{% endblock bodyAdmin %}      

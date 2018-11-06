@@ -1,0 +1,30 @@
+{# empty Twig template #}
+<ul class="pagination">
+    {% set pageRetour = page - 1  %}
+    <li>
+        {% if  routeEnCours == 'jevisla_alerte_author' %}
+            <a href="{{ path('jevisla_alerte_author', {'page': pageRetour, 'authorId': app.user.id} ) }}">&laquo;</a>    
+        {% else %}    
+            <a href="{{ path('jevisla_alerte_home', {'page': pageRetour} ) }}">&laquo;</a>
+        {% endif %}
+    </li>
+        {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+    {% for p in range(1, nbPages) %}
+        <li{% if p == page %} class="active"{% endif %}>
+
+            {% if  routeEnCours == 'jevisla_alerte_author' %}
+                <a href="{{ path('jevisla_alerte_author', {'page': p, 'authorId': app.user.id} ) }}">{{ p }}</a>    
+            {% else %}    
+                <a href="{{ path('jevisla_alerte_home', {'page': p}) }}">{{ p }}</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+    {% set pageAvant = page + 1  %}
+    <li>
+        {% if  routeEnCours == 'jevisla_alerte_author' %}
+            <a href="{{ path('jevisla_alerte_author', {'page': pageAvant, 'authorId': app.user.id} ) }}">&raquo;</a>    
+        {% else %}    
+            <a href="{{ path('jevisla_alerte_home', {'page': pageAvant} ) }}">&raquo;</a>
+        {% endif %}
+    </li>
+</ul>

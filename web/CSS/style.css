@@ -1,0 +1,1671 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20 févr. 2018, 16:23:55
+    Author     : Patrick Maina
+*/
+
+
+/* Styles de base ----------------------------------------------- */
+    
+ body {
+background: url('../img/fond.jpg') no-repeat center center fixed;
+background-size: cover;
+-o-background-size: cover;
+}
+
+/* communs --------------------------------------------------------*/
+a{
+text-decoration: none;    
+}
+
+.aligneText{
+text-align: center;    
+}
+.slider{
+margin-top: 150px; 
+margin-bottom: 60px; 
+}
+.signlogo {
+width: 50px; 
+height: 50px;
+}
+.fa-spin{
+margin-left: -12px;
+margin-right: 8px;
+color: red;
+}
+.retrait{
+margin-left: 50px;    
+}
+.glyphicon-star-empty{
+color: cyan ;    
+}
+.glyphicon-hand-right, .glyphicon-hand-down{
+color: palegoldenrod ;    
+}
+input {
+border: 1px solid transparent;
+background-color: #f0f7fa;
+padding: 10px;
+font-size: 16px;
+}
+input[type=text] {
+background-color: #f0f7fa;
+width: 80%;
+}
+input[type=submit] {
+background-color: DodgerBlue;
+color: #fff;
+}
+.label {
+font-size: 14px !important;
+}
+.sizeWindowMap{
+width:auto;  
+font-size: 10px !important;
+}
+.majuscules{
+ text-transform: uppercase;    
+}
+.changeColor{
+ background: #a9d4e4;   
+}
+#flashMessage{
+display: none;    
+}
+img {
+width: 100%;
+}
+hr{
+width: 100%;
+height: 2px;
+background-color: #7cbdd6;
+border: none;  
+}
+.encadrement{
+padding: 10px 10px 10px 10px;    
+}
+.colorPseudo{
+font-size: 15px;
+color: blue;
+}
+.miniature{
+width: 120px !important;
+height: 120px !important;
+}
+a{
+color: black;
+}  
+#menu4 a{
+color: black;     
+}  
+.logo img{
+width: 70px; 
+height: 80px;
+left: 10px;
+position: absolute;
+}
+.profilVue{
+color: green;    
+}
+.overf{
+overflow: hidden;    
+}
+.jumbotron{
+background-color: rgba(222, 214, 214, 0.0) !important; 
+} 
+.dropdown {
+float: left;
+}
+.dropdown .dropbtn {
+font-size: 16px;    
+border: none;
+outline: none;
+color: yellow;
+padding: 14px 16px;
+background-color: #208eb8;
+font: inherit;
+margin: 0;
+position: fixed;
+z-index: 1000;
+border-bottom-left-radius: 50%;
+border-bottom-right-radius: 50%;
+display: none;
+}
+.dropdown:hover .dropbtn {
+background-color: #208eb8;
+border: 1px solid red;
+color: yellow;
+display: none !important;
+}
+.dropdown-content {
+display: none;
+position: fixed;
+background-color: #e8f6fa;
+width: 100%;
+height: auto;
+left: 0;
+-webkit-box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 100;
+}
+.dropdown-content .header {
+background: #238fb9;
+padding: 16px;
+color: white;
+}
+.dropdown:hover .dropdown-content {
+display: block;
+}
+.pseudoAccueil {
+text-align: center;
+vertical-align: central; 
+font-size: 36px;  
+font-style: italic; 
+color: #DFF0D8; 
+padding: 10px 10px 5px 5px;
+border-radius: 5%;   
+}
+#zone_chat strong {
+color: white;
+background-color: black;
+padding: 2px;
+}
+.alert {
+padding: 20px;
+background-color: #f44336;
+color: white;
+opacity: 1;
+-webkit-transition: opacity 0.6s;
+-o-transition: opacity 0.6s;
+transition: opacity 0.6s;
+margin-bottom: 15px;
+display: none;
+}
+
+/* bundle Administration --------------------------------- */ 
+
+.adminPanel{
+border: none;    
+}
+.adminPanelTitle{
+text-align: center;
+font-size: 20px;    
+}
+.plateformeAdmin{
+background-image: -webkit-radial-gradient(center, circle, white, #aadfee) !important;
+background-image: -o-radial-gradient(center, circle, white, #aadfee) !important;
+background-image: radial-gradient(circle at center, white, #aadfee) !important;    
+}
+.adminLayoutTitle{
+color: #428bca; 
+text-align: center;  
+}
+.categFormAdmin{
+color:#428bca;
+font-size: 20px;     
+}
+
+.ulCatListAdmin{
+font-size: 20px;
+text-decoration: none;
+list-style-type: none;     
+}
+.jumboAdmin{
+margin-top: 10px;
+}
+
+/* bundle Alerte  -----------------------------------------  */ 
+.alert.success {
+background-color: #4CAF50;
+display: none;
+}
+.alert.info {
+background-color: #2196F3; 
+display: none;
+}
+.alert.warning {
+background-color: #ff9800; 
+display: none;
+}
+.alertePanel{
+border: none;    
+}
+.alertePanelTitle{
+text-align: center;  
+}
+.alerteGestionTitle{
+text-align: center;
+font-size: 20px;    
+}
+.plateformeAlerte{
+background-image: -webkit-radial-gradient(center, circle, white, #aadfee) !important;
+background-image: -o-radial-gradient(center, circle, white, #aadfee) !important;
+background-image: radial-gradient(circle at center, white, #aadfee) !important;    
+}
+/* à supprimer */
+.fondPl{
+background-image: -webkit-radial-gradient(center, circle, #cbebf5, #aadfee) !important;
+background-image: -o-radial-gradient(center, circle, #cbebf5, #aadfee) !important;
+background-image: radial-gradient(circle at center, #cbebf5, #aadfee) !important; 
+color: white;
+}
+.alertFormCreat, .alertViewImg{
+color:#428bca;
+font-size: 20px;     
+}
+.alertesPar3{
+overflow: hidden;
+height: 500px !important;
+overflow-x: hidden; 
+}
+.alerteMenu {
+font-size: 10px; 
+text-decoration: none;    
+}
+.alerteMenuTitle{
+color: #428bca; 
+font-size: 13px;   
+}
+.alerteLayoutTitle{
+color: #428bca; 
+text-align: center;  
+}
+.alerteLayoutHeading{
+color: white; 
+text-decoration: none;     
+}
+.reponseViewAlerteUser{
+border: 2px ridge #98cbde;    
+}
+.imgViewAlerte{
+border: 2px #DFF0D8 solid ;
+border-color: #DFF0D8; 
+padding: 1px 1px 1px 1px;
+border-radius: 5%;     
+}
+.imgAlerteView{
+width: 100%;
+height: 500px;
+}
+.alertViewDate{
+color: #428bca; 
+font-size: 15px;   
+}
+alertViewRespons{
+padding-top: 20px; 
+}
+
+/* bundle ChatRoom  --------------------------------------- */
+
+.chatSidebar{
+margin-top: 10px;
+color:white;
+font-size: 20px;
+text-align: center;
+vertical-align: central;     
+}
+.chatContainerBorder{
+border: 4px solid white;   
+}
+.chat-areaTopic{
+border: 2px groove graytext;
+width: 100% !important; 
+height: 65px;
+font-size: 12px;
+padding-left: 20% !important;
+padding-top: 20px;
+}
+.userName{
+margin-left: 0;
+margin-top: 0;
+border-radius: 50%;
+text-align: center;
+}
+.chat-areaInput{
+border: 2px groove graytext;
+font-size: 12px;
+height: 65px !important;
+padding-top: 20px;
+padding-left: 5% !important;
+width: 100% !important;
+}
+.chat-btnTopic {
+color: white;
+font-size: 16px;
+cursor: pointer;
+text-align: center;
+top: 25px;
+height: 22px !important;
+width: 100% !important;
+}
+.picture{
+border-radius: 50% !important;
+margin-top: 15px;
+}
+.messageU{
+width: 100%;    
+padding: 10px 5px 5px 5px;    
+left:0;
+z-index: 100;
+height: 80px;
+border-radius: 20px;
+}
+.nomChat{
+padding: 0px 5px 5px 5px;    
+position: absolute;    
+bottom: 0px;
+right: 10px;
+font-size: 10px;
+}
+.dateChat{
+font-size: 10px;
+color: #474e5d;
+text-align: left;
+}
+/* à voir  
+.content {
+background-color: transparent;
+position: relative;
+border-radius: 6px;
+width: auto;
+}*/
+.conteneur {
+position: relative;
+background-color: inherit;
+vertical-align: central;
+}
+.ligneMess{
+word-wrap: break-word;
+color: black;
+font-size: 12px;
+font-weight: bolder;
+text-align: left;
+vertical-align: central;
+border: 2px solid white;
+background-color: white;
+}
+.left{
+left: 0;
+}
+.right{
+right: 0;
+}
+#close-chat{
+display: none;    
+}
+
+/* évènements culturels ----------------------------------  */
+
+.blocEvCul{
+}
+.buttonload {
+display: none; 
+border: none;  
+color: white;  
+padding: 12px 24px;  
+font-size: 16px;  
+border-radius: 50%;
+}
+eventCultuKm{
+color: crimson; 
+font-size: 20px;   
+}
+.eventCultuColor{
+color: #31b0d5;    
+}
+.sliderD::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 25px;
+height: 25px;
+background: crimson;
+cursor: pointer;
+}
+.sliderD::-moz-range-thumb {
+width: 25px;
+height: 15px;
+background: crimson;
+cursor: pointer;
+}
+.sizeEvetCult{
+font-size: 15px; 
+padding: 5px 5px 5px 5px;
+}
+#mapCulturel{
+height: 350px;
+width: 100%; 
+float: left; 
+z-index: 1;
+border: 2px groove #045AAE;    
+}
+.contentCult{
+color: #464646;
+background-image: -webkit-radial-gradient(center, circle, #ecf7ec, #b6dfb6) !important;
+background-image: -o-radial-gradient(center, circle, #ecf7ec, #b6dfb6) !important;
+background-image: radial-gradient(circle at center, #ecf7ec, #b6dfb6) !important; 
+border-radius: 25px;
+padding: 10px 15px 10px 15px;
+font-size: 14px;
+text-align: justify; 
+}
+.adressCult{
+color: #464646;
+background-image: -webkit-radial-gradient(center, circle, #ecf7ec, #9dcde0) !important;
+background-image: -o-radial-gradient(center, circle, #ecf7ec, #9dcde0) !important;
+background-image: radial-gradient(circle at center, #ecf7ec, #9dcde0) !important; 
+border-radius: 25px;
+padding: 20px 15px 10px 50px;
+font-size: 14px; 
+font-weight: bolder;
+}
+.conditionsEnter{
+color: white;
+background-image: -webkit-radial-gradient(center, circle, #d9534f, #d9534f) !important;
+background-image: -o-radial-gradient(center, circle, #d9534f, #d9534f) !important;
+background-image: radial-gradient(circle at center, #d9534f, #d9534f) !important;  
+padding: 5px 5px 5px 5px;
+border-radius: 25px;
+}
+
+/* les css du bundles Forums sont sur Forum/resources/public... -------------*/
+
+/* forums */
+#editPosts .label-danger{
+font-size: 20px !important;    
+}
+#editPosts .label-success{
+font-size: 20px !important;    
+}
+#editPosts .label-warning{
+font-size: 20px !important;    
+}
+
+/* les css du carousel sont sur web/CSS/carousel.css... ---------------------*/
+
+/* bundle General -----------------------------------------------------------*/
+
+.actualitesAccueil{
+}
+.theColor{
+text-decoration: none;
+border: 3px groove black;
+background-image: -webkit-radial-gradient(center, circle, white, #0c84b2);
+background-image: -o-radial-gradient(center, circle, white, #0c84b2);
+background-image: radial-gradient(circle at center, white, #0c84b2);
+height: 100px;
+padding: 10px 20px 10px 20px;
+}
+.theColor:hover, .reponse:nth-child(n):focus{
+text-decoration: none;    
+}
+.tabBord:hover{
+cursor: pointer;    
+}
+.colorTitle{
+color: gray;     
+}
+.sendContact{
+margin-top: 20px;    
+}
+.styleIconeGeneral{
+margin-left: 45%;
+margin-top: 5%;
+}
+.styleIconeGeneralFolder{
+color: orange !important;    
+}
+.styleIconeGeneralEnvelop{
+color: red !important;     
+}
+.styleIconeGeneralComment{
+color: hotpink !important;     
+}
+.styleIconeGeneralEnveloppe{
+color: yellow !important;     
+}
+.labelAlertesAccueil{
+background-image: -webkit-radial-gradient(center, circle, white, #ffa500);
+border-radius: 25px;
+color: grey;
+font-size: 20px;
+text-align: center;
+font-weight: bolder ;
+font-family: 'fantasy';
+padding: 15px 0px 15px 0px;
+margin-bottom: 20px;
+}
+.imageAlertesAccueil{
+margin-top: 20px;    
+float: left;
+min-height: 150px;
+}
+.alertesBandeau{
+padding: 20px 50px 20px 50px;
+}
+.contentAuthorAlertesAccueil{
+padding: 0px 10px 10px 0px;   
+}
+.contentAlertesAccueil{
+margin-top: 20px; 
+text-align: justify;  
+font-size: 14px;
+padding: 20px 20px 20px 20px;
+}
+.contentTitleAlertesAccueil{
+font-size: 16px;
+padding: 50px 50px 50px 50px;   
+}
+
+.labelAllAlertesAccueil{
+background-image: -webkit-radial-gradient(center, circle, white, lightgreen);
+border-radius: 25px;
+color: grey;
+font-size: 20px;
+text-align: center;
+font-weight: bolder ;
+font-family: 'fantasy';
+padding: 15px 0px 15px 0px;
+margin-bottom: 50px;
+}
+.sizeTabBord{
+font-size: 14px;
+text-align: center;
+}
+#page-top .panel-default {
+border-radius: 25px;
+}
+.panel-default .panel-heading {
+background: #5bc0de !important;
+}
+.panel-default .panel-heading h1 {
+color: white;
+text-align: center;  
+}
+.styleAccordionGeneral{
+padding: 10%;   
+}
+.afficheGeneralActualites{
+margin-top: 40px;    
+padding: 70px 10px 10px 10px;
+}
+.contentAccueilMaster{
+overflow: hidden;    
+}
+.contentAccueil{
+height: 650px;
+overflow-y: hidden;
+overflow-x: hidden;
+}
+.contentAccueil h3, .choixActionAccueilTitle {
+text-align: center;    
+}
+.contentPara{
+padding: 10px 10px 10px 10px;
+width:100%;
+border-radius: 50%;
+}
+.contentAccueil:hover{
+z-index: 1000;
+background: #d9edf7;
+border: 3px groove #d9edf7;
+}
+.textBienvenue{
+text-align: justify;  
+font-size: 15px !important ;
+}
+.choixActionAccueil{
+ 
+}
+.contactPadLeft{
+padding-left: 0px; 
+} 
+.margTopContact{
+margin-top: 5px;  
+}
+
+/* bundle Map -------------------------------------------------*/
+
+.FGM{
+background: #f4fbfd; 
+opacity: 0.95;
+}
+.formFG{
+padding: 20px;
+background-color: #5cb85c;
+color: white;
+opacity: 1;
+-webkit-transition: opacity 0.6s;
+-o-transition: opacity 0.6s;
+transition: opacity 0.6s;
+margin-bottom: 15px;
+display: none;
+}
+.closebtn {
+margin-left: 15px;
+color: white;
+font-weight: bold;
+float: right;
+font-size: 22px;
+line-height: 20px;
+cursor: pointer;
+-webkit-transition: 0.3s;
+-o-transition: 0.3s;
+transition: 0.3s;
+}
+.closebtn:hover {
+color: black;
+}
+.popup {
+position: relative;
+display: inline-block;
+cursor: pointer;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+.popup .popuptext {
+visibility: hidden;
+background-color: #208eb8;
+color: #fff;
+text-align: center;
+border: 2px  solid #9ad8eb; 
+border-radius: 6px;
+padding: 15px 15px 15px 15px;
+position: absolute;
+z-index: 1;
+top: 80%;
+z-index: 30;
+}
+.popup .popuptext::before {
+content: "";
+position: absolute;
+bottom: 100.5%;
+left: 50%;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: transparent transparent #e0f3f9 transparent;
+}
+.popup .show {
+visibility: visible;
+-webkit-animation: fadeIn 1s;
+animation: fadeIn 1s;
+}
+.messagePopup{
+border: 1px groove #44a1c4;
+font-weight: bolder; 
+font-size: 15px; 
+color: white; 
+}
+.myZone {
+position: relative;
+display: inline-block;
+cursor: pointer;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+#myZone .zonetext {
+visibility: hidden;
+background-color: #e0f3f9;
+color: #fff;
+text-align: center;
+border: 2px  solid #9ad8eb; 
+border-radius: 6px;
+padding: 15px 15px 15px 15px;
+position: absolute;
+z-index: 1;
+top: 110%;
+left: 50%;
+margin-left: -150px;
+z-index: 30;
+}
+#myZone .zonetext::before {
+content: "";
+position: absolute;
+bottom: 100.5%;
+left: 50%;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: transparent transparent #e0f3f9 transparent;
+}
+.myZone .show {
+visibility: visible;
+-webkit-animation: fadeIn 1s;
+animation: fadeIn 1s;
+}
+@keyframes fadeIn {
+from {opacity: 0;}
+to {opacity:1 ;}
+}
+@-webkit-keyframes fadeIn {
+from {opacity: 0;} 
+to {opacity: 1;}
+}
+.inputLocalisation{
+background-color: lightyellow !important;    
+}
+#itemFGM{
+position: relative; 
+z-index: 1000;      
+margin-top: 5%;
+}
+#map {
+top: 10%;
+left: 1%;
+height: 600px;
+width: 100%; 
+float: left; 
+z-index: 0;
+border: 2px groove #045AAE;
+}
+.corpsVoisins{
+margin-top: 10px;
+}
+
+/* bundle messagerie ----------------------------------------*/
+
+.messagerieVoisinId{
+background: #5cb85c;
+background-image: -webkit-radial-gradient(center, circle, #ecf7ec, #5cb85c) !important;
+background-image: -o-radial-gradient(center, circle, #ecf7ec, #5cb85c) !important;
+background-image: radial-gradient(circle at center, #ecf7ec, #5cb85c) !important;
+margin-top: 10px;
+color: black;
+border-radius: 25px;
+padding: 10px 15px 10px 15px;
+}
+.messagerieVoisinVoisin{
+background: #5bc0de;
+background-image: -webkit-radial-gradient(center, circle, #eff9fc, #5bc0de) !important;
+background-image: -o-radial-gradient(center, circle, #eff9fc, #5bc0de) !important;
+background-image: radial-gradient(circle at center, #eff9fc, #5bc0de) !important;
+margin-top: 15px;
+color: black;
+border-radius: 25px;
+padding: 10px 15px 10px 15px;
+}
+.colonneMessage{
+margin-top: 10px; 
+margin-bottom: 10px;
+height: 530px;
+overflow-y: scroll;
+overflow-x: hidden;
+border-radius: 25px;
+background: url('../img/fond.jpg') no-repeat fixed center;
+}
+.areaMessagesVoisin{
+background: #dfdfdf !important;  
+}
+.messagerie{
+}
+.enteteMessagerie{
+margin-top: -10px;    
+}
+.stateAjax > .connection-status {
+width: 7px;
+height: 7px;
+margin: 0 7px 0 0;
+display: inline-block;
+border-radius: 50%;
+background: #d0021b;
+}
+.stateAjax > .connection-status.active {
+background: #7ed321;
+}
+.sizeImg{
+width: 60px;    
+margin-top: 5px;
+}
+.messagerieDateStyle{
+font-size: 9px;  
+}
+.listMessagesNonLusAccueilPseudo{
+color:black; 
+font-weight: bolder;
+font-size: 20px;    
+}
+.lastMessageMobile{
+list-style-type: none;  
+} 
+.listMessagesNonLusAccueilNumber{
+color:black;
+font-weight: bolder; 
+}
+
+/* ---------------------------------------------------------------------- */
+
+
+/* affiche image modal userModal & photoUserModal -------------------------*/
+
+.sizeProfilShow{
+overflow: hidden !important;   
+}
+.longP{
+color: black; 
+font-size: 9px;
+font-weight: bold;
+width: 100px;
+}
+.imgModalPhotoUser{
+border: 2px #DFF0D8 solid ;
+border-color: #DFF0D8;
+padding: 1px 1px 1px 1px;
+border-radius: 5%;     
+}
+.userModalImg{
+border: 2px #DFF0D8 solid ; 
+border-color: #DFF0D8; 
+padding: 1px 1px 1px 1px;
+border-radius: 5%;     
+}
+#myImg {
+cursor: pointer;
+-webkit-transition: 0.3s;
+-o-transition: 0.3s;
+transition: 0.3s;
+}
+#myImg:hover {
+opacity: 0.7;
+}
+.modal {
+display: none;  
+position: fixed;  
+z-index: 1;  
+padding-top: 50px;  
+left: 0;
+top: 0;
+width: 100%;  
+height: 100%;  
+overflow: auto;  
+background-color: rgb(0,0,0);  
+background-color: rgba(0,0,0,0.9);  
+}
+.modal-content {
+margin: auto;
+display: block;
+width: 80%;
+max-width: 700px;
+max-height: 90%;
+}
+#caption {
+text-align: center;
+font-family: 'fantasy';
+color: #ccc;
+padding: 5px 5px 10px 5px;
+font-size: 14px;
+font-weight: bolder;
+}
+.modal-content, #caption {    
+-webkit-animation-name: zoom;
+-webkit-animation-duration: 0.6s;
+animation-name: zoom;
+animation-duration: 0.6s;
+}
+@-webkit-keyframes zoom {
+from {-webkit-transform:scale(0)} 
+to {-webkit-transform:scale(1)}
+}
+@keyframes zoom {
+from {-webkit-transform:scale(0);transform:scale(0)} 
+to {-webkit-transform:scale(1);transform:scale(1)}
+}
+.close {
+position: absolute;
+top: 15px;
+right: 35px;
+color: white;
+font-size: 40px;
+font-weight: bolder;
+-webkit-transition: 0.3s;
+-o-transition: 0.3s;
+transition: 0.3s;
+}
+.close:before {
+content: "\274E";
+display: block;
+text-align: center;
+vertical-align: middle; 
+color: white;
+text-decoration: none;
+cursor: pointer;
+font-size: 25px;
+} 
+.close:hover,
+.close:focus {
+color: white;
+text-decoration: none;
+cursor: pointer;
+font-size: 25px;
+}
+/* fin d'affichage image modal -----------------------------------------*/
+
+
+/* footer -------------------------- */
+
+.frameFacebookImg{
+border:none;
+overflow:hidden;
+width:65px;
+height:65px;
+margin-top:3px;     
+}
+.titreFooter{
+color: darkcyan ; 
+font-weight: bolder;
+font-size: 20px;
+}
+.fafooter .fa {
+padding: 10px;
+font-size: 20px;
+width: 50px;
+text-align: center;
+text-decoration: none;
+margin: 5px 2px;
+color: #e4f1f6;
+}
+.shortfooter > a{
+padding: 10px;
+font-size: 20px;
+width: 150px;
+text-align: center;
+text-decoration: none;
+margin: 5px 2px;
+color: white;
+}
+.fafooter .fa:hover {
+opacity: 0.7;
+}
+.rsoc iaux{
+border-radius: 50%;    
+}
+.fa-facebook {
+background: #3B5998;
+color: white;
+}
+.fa-twitter {
+background: #55ACEE;
+color: white;
+}
+.fa-google {
+background: #dd4b39;
+color: white;
+}
+.fa-linkedin {
+background: #007bb5;
+color: white;
+}
+.fa-youtube {
+background: #bb0000;
+color: white;
+}
+.fa-instagram {
+background: #125688;
+color: white;
+}
+.piedDePage{
+margin-top: 150px;    
+top: 100%;    
+height: auto;
+background-image: -webkit-radial-gradient(center, circle, white, #0c84b2) !important;
+background-image: -o-radial-gradient(center, circle, white, #0c84b2) !important;
+background-image: radial-gradient(circle at center, white, #0c84b2) !important;
+}
+
+/* fin footer */
+
+/* fonction autocomplete de Jquery UI utilisation sur bundle Map & Evènements culturels */
+
+.ui-autocomplete {
+background-color: inherit;
+color: black;
+overflow: hidden; 
+max-height: 400px;
+z-index: 100;
+} 
+.ui-autocomplete:hover{
+overflow-y: scroll;
+overflow-x: hidden; 
+}
+.ui-menu{
+background: #f0f7fa;
+color: black;
+list-style-type: none; 
+margin-left: 5px !important; 
+}
+.ui-menu-item:hover{
+color: white;
+list-style-type: none;
+z-index: 100;      
+}
+.ui-menu-item{
+height: 50px;   
+}
+
+/* login/register / vérification email */
+
+#checkMail {
+background-color: #eaf4f8;
+padding: 30px;
+text-align: center;
+top: 0;
+width: 100%;
+font-size: 20px;
+line-height: 25px;
+margin-top: 250px;
+}
+.checkMail{
+text-align: center;    
+margin-top: 20px;
+font-size: 20px;
+font-family: 'fantasy';
+color: black;
+background-image: -webkit-radial-gradient(center, circle, white, #8a8a8a) !important;
+background-image: -o-radial-gradient(center, circle, white, #8a8a8a) !important;
+background-image: radial-gradient(circle at center, white, #8a8a8a) !important; 
+border-radius: 25px;
+padding: 10px 15px 10px 15px;
+}
+.jeMinscris{
+margin-top: 15px;
+color: white;
+}
+.textWelcomeInscription{
+text-align: center;    
+margin-top: 20px;
+font-size: 20px;
+font-family: 'fantasy';
+color: black;
+background-image: -webkit-radial-gradient(center, circle, white, #8a8a8a) !important;
+background-image: -o-radial-gradient(center, circle, white, #8a8a8a) !important;
+background-image: radial-gradient(circle at center, white, #8a8a8a) !important; 
+border-radius: 25px;
+padding: 10px 15px 10px 15px;
+}
+.eclatDeVerre{
+background: black;   
+}
+.margeLoginUser{
+margin-top: 15px;
+}
+.margeTopResttingUser{
+margin-top: 50px;
+}
+/* menu d'accueil  nav_inside -------------------------------------------------*/ 
+
+.jevislaVignette {
+color:yellow; 
+background:#2c94bc; 
+border-radius: 25px; 
+padding: 5px 5px 5px 5px;   
+}
+.header {
+background-color: #eaf4f8;
+padding: 30px;
+text-align: center;
+top: 0;
+width: 100%;
+font-size: 20px;
+line-height: 25px;
+}
+.header .label-danger{
+font-size: 20px !important; 
+}
+.logoM{
+width: 250px;
+height: 150px;
+-ms-flex-line-pack: center;
+    align-content: center;
+}
+.menuTopAccueil {
+font-size: 20px;
+color: #208eb8;
+}
+.textWelcome{
+margin-top: 50px;
+margin-left: 20%;
+font-size: 20px;
+font-family: 'fantasy';
+color: gray;
+background-image: -webkit-radial-gradient(center, circle, white, #8a8a8a) !important;
+background-image: -o-radial-gradient(center, circle, white, #8a8a8a) !important;
+background-image: radial-gradient(circle at center, white, #8a8a8a) !important; 
+border-radius: 25px;
+padding: 10px 15px 10px 15px;
+width: 60%;
+}
+.headerMn{
+background-color: #208eb8;
+padding: 30px;
+text-align: center;
+text-orientation: upright;
+top: 0;
+width: 100%; 
+height: 30px;
+color: white;
+}
+.headerMn h4{
+margin-top: -15px;
+}
+.menujvl{
+padding: 10px 0px 0px 50px;
+height: 100%;
+}
+.fontMenuJvl{
+font-size:20px;
+color:white;   
+}
+.menujvl h3{
+color: #208eb8; 
+}
+
+
+
+
+/* ---------------------------------------------------------------------------*/
+#symbChat{
+display: none;    
+}
+#symbLocal{
+display: none;    
+}
+#symbAlert{
+display: none;    
+}
+#symbModPrf{
+display: none;    
+}
+#symbVuePrf{
+display: none;    
+}
+#symbEvtsCult{
+display: none;    
+}
+.column > .modProfil_ac > a:hover #symbModPrf{
+display: block;    
+}
+.column > .voirProfil_ac > a:hover #symbVuePrf{
+display: block;    
+}
+.column > .voirEvents_ac > a:hover #symbEvtsCult{
+display: block;    
+}
+.column > .chat_ac > a:hover #symbChat{
+display: block;    
+}
+.column > .localisation_ac > a:hover #symbLocal{
+display: block;    
+}
+.column > .alerte_ac > a:hover #symbAlert{
+display: block;    
+}
+.column > .chat_ac > a:hover, .column > .chat_ac > a:focus {
+background: #5cb85c !important;
+margin: 5px 5px 5px 5px;  
+color: white;
+}
+.column > .localisation_ac > a:hover, .column > .localisation_ac > a:focus {
+background: #5bc0de !important; 
+margin: 5px 5px 5px 5px;  
+color: white;
+}
+.column > .alerte_ac > a:hover, .column > .alerte_ac > a:focus {
+background: #f0ad4e !important;
+margin: 5px 5px 5px 5px;  
+color: white;
+}
+.column > .modProfil_ac > a:hover, .column > .modProfil_ac > a:focus {
+background: crimson !important;
+margin: 5px 5px 5px 5px; 
+color: white;
+}
+.column > .voirProfil_ac > a:hover, .column > .voirProfil_ac > a:focus {
+background: purple !important;
+margin: 5px 5px 5px 5px;  
+color: white;
+}
+.column > .voirEvents_ac > a:hover, .column > .voirEvents_ac > a:focus {
+background: fuchsia !important;
+margin: 5px 5px 5px 5px;  
+color: white;
+}
+.pictures_accueil{
+width: 400px !important;
+height: 400px !important;
+}
+/*-------------------------------------------------------------------------------*/
+/* Create three equal columns that floats next to each other */
+.column {
+float: left;
+width: 33.33%;
+height: auto;
+padding: 10px;
+background-color: #e8f6fa;
+}
+.column a {
+float: none;
+color: black;
+padding: 16px;
+text-decoration: none;
+display: block;
+text-align: left;
+font-size: 15px;
+}
+.column a:hover {
+background-color: white;
+text-decoration: none;
+}
+/* Clear floats after the columns */
+.row:after {
+content: "";
+display: table;
+clear: both;
+}
+.imgNav{
+border: 2px #DFF0D8 solid ;
+border-color: #DFF0D8; 
+padding: 1px 1px 1px 1px; 
+border-radius: 5%;     
+}
+.navbar-default .navbar-nav a{
+font-size: 20px;  
+margin-bottom: 5px;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus {
+color: grey !important;
+border-bottom: 3px solid #fbfc27; 
+background: #d3e9f1 !important; 
+padding-bottom: 20px;
+}
+#tete .navbar-collapse ul li:not(.active) a:hover {
+color: grey !important;
+border-bottom: 1px solid #fbfc27; 
+background: #d3e9f1 !important; 
+padding-bottom: 20px;
+}
+.carousel-indicators li {
+display: inline-block;
+width: 18px;
+height: 18px;
+margin: 10px;
+text-indent: 0;
+cursor: pointer;
+border: none;
+border-radius: 50%;
+background-color: #48484C;
+-webkit-box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5);
+        box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5);    
+}
+.carousel-indicators .active {
+width: 18px;
+height: 18px;
+margin: 10px;
+background-color: #E8EFF7;
+}
+.fa-chevron-left, .fa-chevron-right{
+margin-top: 200%;
+}
+.carousel-inner h2{
+padding-bottom: 50px; 
+font-size: 150%; 
+}
+ 
+
+.navbar-inverse {
+background-image: -webkit-radial-gradient(center, circle, white, #0c84b2) !important;
+background-image: -o-radial-gradient(center, circle, white, #0c84b2) !important;
+background-image: radial-gradient(circle at center, white, #0c84b2) !important;
+}
+.navbar-default {
+background-image: -webkit-radial-gradient(center, circle, #d9ecf3, #0c84b2) !important;
+background-image: -o-radial-gradient(center, circle, #d9ecf3, #0c84b2) !important;
+background-image: radial-gradient(circle at center, #d9ecf3, #0c84b2) !important;
+}
+.navbar-inverse .open .navbar-brand:focus {
+background: #ebebeb !important; 
+color: black !important; 
+}
+.navbar-inverse .navbar-brand:focus {
+background: #ebebeb !important; 
+color: black !important; 
+}
+.navbar-inverse .navbar-header:hover {
+color: black !important;
+}
+.navbar-inverse .navbar-nav:hover .navbar-brand {
+border-bottom: 2px solid lightgray;
+color: black; 
+}
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus{
+background-color: #10d8ea !important; 
+border-radius: 10%;
+margin: 5px 5px 5px 5px;
+}
+
+
+
+
+
+/* zones des médiaquery ______________________________________________________*/ 
+
+
+/* Styles pour les smartphones */
+@media (max-width: 768px) {
+    
+.afficheGeneralActualites{
+margin-top: 400px;    
+padding: 70px 10px 10px 10px;
+}
+.dropdown .dropbtn {
+font-size: 10px;    
+padding: 12px 14px;
+}    
+.cke_1 .cke_top, .cke_1 .cke_bottom{
+background-color: #9cd9eb;    
+}    
+.lastMessageMobile{
+list-style-type: none;
+margin-left: -10px;
+}    
+.modal-content {
+width: 100%;
+}
+.label {
+font-size: 12px !important;
+}
+.sizeTabBord{
+font-size: 12px;
+}
+.recent-posts .panel-body {
+padding: 0px;    
+}
+.labelAlertesAccueil{
+font-size: 14px;
+padding: 10px 0px 10px 0px;
+}
+.fontMenuJvl{
+font-size: 0.75em !important;
+color:white;   
+}
+.header {
+width: 100%;
+font-size: 15px;
+line-height: 20px;
+}
+.menuTopAccueil {
+font-size: 12px;
+color: white;
+}
+.pseudoAccueil {
+font-size: 20px; 
+padding: 10px 5px 5px 5px;
+}
+.alertesBandeau{
+padding: 20px 10px 20px 10px;
+}
+.contentAlertesAccueil{
+text-align: justify;    
+font-size: 12px;
+padding: 5px 5px 5px 5px;
+}
+.contentTitleAlertesAccueil{
+font-size: 14px;
+padding: 5px 5px 5px 5px;   
+}
+.slider{
+margin-top: 200px; 
+margin-bottom: 60px; 
+}
+.imgIphone{
+max-width: 20%; 
+max-height: 100%;
+}
+.onCacheXs{
+display: none;    
+}
+.column {
+width: 100%;
+height: auto;
+}
+.dropdown:hover .dropdown-content {
+display: block;
+}
+.dropdown-content {
+position: fixed;
+width: 100%;
+height: 700px;
+overflow-y: scroll;
+overflow-x: hidden;
+}
+#itemFGM{
+position: relative;
+z-index: 10;      
+margin-top: 150px;
+}
+.sizeWindowMap{
+width:auto;   
+}
+.sizeEvetCult{
+font-size: 13px;    
+}
+.sizeEvetCultContent{
+font-size: 12px;    
+}
+.contentCult{
+font-size: 10px;
+}
+.adressCult{
+font-size: 10px; 
+font-weight: bolder;
+}
+.cke_t op, .cke_bo ttom {
+background: #81bfd7 !important;
+color: red !important;
+}
+.nomChat{
+font-size: 8px;
+padding-left: 10px;
+}
+
+/* on cache la flèche en mode mobile */
+.left {
+right: 0 !important;
+}
+.picture{
+margin-top: 0px !important;
+}
+.mapForever{
+width: 100%;
+height: 350px;
+z-index: 1000;   
+}
+.sizeImg{
+margin-right: 20px;
+}
+.textWelcome{
+font-size: 14px;
+margin-left: 1%;
+padding: 5px 5px 5px 5px;  
+background-image: -webkit-radial-gradient(center, circle, white, #a6a6a6) !important;
+background-image: -o-radial-gradient(center, circle, white, #a6a6a6) !important;
+background-image: radial-gradient(circle at center, white, #a6a6a6) !important; 
+width: 100%;
+}
+.dateEventCulturel{
+font-size: 9px !important; 
+margin-left: 5px;
+}
+#caption {
+text-align: center;
+color: #ccc;
+padding: 5px 5px 5px 5px;
+font-size: 10px;
+}
+.textWelcomeInscriptionMobile{
+margin-top: 100px;
+font-size: 16px;
+}
+.textLabelInscriptionMobile{
+font-size: 14px !important;    
+}
+.textWelcomeInscription{
+font-size: 16px;
+}
+.imgAlerteView{
+width: 100%;
+height: 200px;
+}
+.toutesMesAlertes{
+font-size: 12px;
+}
+.labelAllAlertesAccueil{
+font-size: 18px;
+padding: 15px 0px 15px 0px;
+margin-bottom: 50px;
+}
+.imageAlertesAccueil{
+margin-top: 20px;    
+float: left;
+min-height: 150px;
+}
+
+}
+
+  /* Styles pour les tablettes */
+@media (min-width: 768px) and (max-width: 992px) {
+.afficheGeneralActualites{
+margin-top: 150px;    
+padding: 70px 10px 10px 10px;    
+}    
+.btn-lg {
+width: 60px;
+height: 60px;
+border-radius: 50%;
+}
+.label {
+font-size: 14px !important;
+}
+.pseudoAccueil {
+font-size: 30px; 
+padding: 20px 10px 5px 5px;
+}
+.toutesMesAlertes{
+font-size: 12px;
+}
+.labelAllAlertesAccueil{
+font-size: 18px;
+padding: 15px 0px 15px 0px;
+margin-bottom: 50px;
+}
+.btn-lg .fa{
+margin-left: 0%; 
+margin-top: 0%;
+}
+.slider{
+margin-top: 250px; 
+margin-bottom: 60px; 
+}
+
+#itemFGM{
+position: relative;
+z-index: 10;      
+margin-top: 10%;
+}
+.sizeTabBord{
+font-size: 12px;
+}
+.sizeEvetCult{
+font-size: 13px;    
+}
+.sizeEvetCultContent{
+font-size: 13px;    
+}
+
+.contentCult{
+font-size: 12px;
+}
+
+.adressCult{
+font-size: 12px; 
+font-weight: bolder;
+}
+.textWelcome{ 
+font-size: 14px;
+}
+.imgAlerteView{
+width: 100%;
+height: 250px;
+}
+.contentAlertesAccueil{
+text-align: justify;    
+font-size: 12px;
+padding: 5px 5px 5px 5px;
+}
+.labelAlertesAccueil{
+font-size: 18px;
+padding: 10px 0px 10px 0px;
+}
+.contentTitleAlertesAccueil{
+font-size: 14px;
+padding: 5px 5px 5px 5px;   
+}
+.menuTopAccueil {
+font-size: 12px;
+color: white;
+}
+.imageAlertesAccueil{
+margin-top: 20px;    
+float: left;
+min-height: 150px;
+}
+.textWelcomeInscriptionMobile{
+margin-top: 0px;
+font-size: 16px;
+}
+}
+
+  /* Styles pour les écrans moyens et grands */
+@media (min-width: 992px) and (max-width: 1280px) {
+.btn-lg {
+width: 60px;
+height: 60px;
+border-radius: 50%;
+}
+.btn-lg .fa{
+margin-left: 0%; 
+margin-top: 0%;
+}
+.sizeTabBord{
+font-size: 13px;
+}
+.textWelcome{
+font-size: 14px;
+}
+.imgAlerteView{
+width: 100%;
+height: 350px;
+}
+.contentAlertesAccueil{
+text-align: justify;    
+font-size: 13px;
+padding: 10px 10px 10px 10px;
+}
+.contentTitleAlertesAccueil{
+font-size: 14px;
+padding: 5px 5px 5px 5px;   
+}
+.toutesMesAlertes{
+font-size: 12px;
+}
+
+}
+  
+ 

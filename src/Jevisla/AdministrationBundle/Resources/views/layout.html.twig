@@ -1,0 +1,29 @@
+{# src/Jevisla/AdministrationBundle/Resources/views/layout.html.twig #}
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <div class="panel panel-info container slider plateformeAdmin">
+        <div id="header" class="jumbotron plateformeAdmin panel-heading">
+            <h1  class="panel-title categFormAdmin adminLayoutTitle">Administration</h1>
+        </div>
+        <div class="row">
+            <div class="panel-body">
+                <div id="content" class="col-md-9">
+                    {% for flashbags in app.session.flashbag.all %}
+                        {% for message in flashbags %}
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    <p class="panel-title"> {{ message }} </p> 
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    <hr>   
+                    {% block bodyAdmin %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

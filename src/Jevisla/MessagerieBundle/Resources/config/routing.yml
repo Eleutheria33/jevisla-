@@ -1,0 +1,31 @@
+jevisla_messagerie_homepage:
+    path:     /messagerie
+    defaults: { _controller: JevislaMessagerieBundle:Messagerie:index }
+
+jevisla_messagerie_conversation:
+    path:     /localisation/messagerie/conversation/{id} 
+    defaults:
+        _controller: JevislaMessagerieBundle:Messagerie:index
+    options:
+        expose: true
+        
+jevisla_messagerie_message:
+    path:     /localisation/messagerie/message/ 
+    defaults:
+        _controller: JevislaMessagerieBundle:Messagerie:message
+    options:
+        expose: true  
+        
+jevisla_messagerie_last_message:
+    path:     /localisation/messagerie/dernierMessage/ 
+    defaults:
+        _controller: JevislaMessagerieBundle:Messagerie:lastMessage
+    options:
+        expose: true   
+        
+jevisla_messagerie_count_non_lus:
+    path:     /localisation/messagerie/nonLus
+    defaults:
+        _controller: JevislaMessagerieBundle:Messagerie:retrieveMessagesNonLus
+    options:
+        expose: true        

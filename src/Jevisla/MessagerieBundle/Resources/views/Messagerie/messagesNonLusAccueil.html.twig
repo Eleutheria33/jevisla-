@@ -1,0 +1,41 @@
+{# Posts and Topic #}
+    <div class="widget-content nopadding">
+        <ul class="recent-posts lastMessageMobile">
+            <li class="panel-body">
+                <div class="article-post">
+                    {% if (listMessagesNonLusAccueil is defined) %} 
+                        {% for conversation in listMessagesNonLusAccueil %}  
+                        <div class="row">    
+                            <div class="col-md-1 col-sm-2 col-xs-4">
+                                <span>
+                                     <img id="photoUserVoisin" data-idVoisin="{{ getObjetPseudoUser(conversation.idUser) }}" style="border-radius: 50%;" src="{{ asset(getObjetImageUser(conversation.idUser).webPath) }}" height="50" title="Profil" alt="user"/>
+                                </span> 
+                            </div>
+                            <div class="col-md-11 col-sm-10 col-xs-8" style="vertical-align: middle">    
+                                <a href="{{ path('jevisla_messagerie_conversation', {id: conversation.idUser})}}">        
+                                    <span style="color:grey;">
+                                        <span class="listMessagesNonLusAccueilPseudo"> 
+                                            {{ getObjetPseudoUser(conversation.idUser) | upper }}
+                                        </span>
+                                        a   
+                                        <span class="listMessagesNonLusAccueilNumber">
+                                            (  {{ conversation.number }}  )
+                                        </span>
+                                          nouveau(x) message(s) pour vous !
+                                    </span>
+                                </a>
+                            </div> 
+                        </div><br>            
+                        {% endfor %} 
+                    {% endif %}
+                    {% if (reponseNegative is defined) %} 
+                        <span style="color:white;">
+                            {{ reponseNegative }}  
+                        </span> 
+                    {% endif %}
+                </div>
+            </li><br>
+        </ul>
+    </div>
+         
+     

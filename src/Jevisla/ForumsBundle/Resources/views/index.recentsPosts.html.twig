@@ -1,0 +1,45 @@
+
+{# Posts and Topic #}
+     
+    <div class="widget-content nopadding">
+        <ul class="recent-posts" style="list-style-type: none;">
+            {% for post in posts|slice(0, 5) %}
+                <li class="panel-body">
+                    <div class="article-post">
+                        <p>
+                            <span class="" style="color:white;">
+                                {% if post.poster is not null %}
+                                    {% set username = post.poster.username %}
+                                    {% set user = post.poster.id %}
+                                    <span class="col-md-1 col-sm-2 col-xs-4">
+                                        <img style="border-radius: 50%;" src="{{ asset(getObjetImageUser(user).webPath) }}" height="50" alt="user" title="Profil"/>
+                                    </span>    
+                                    {% set email = '' %}
+                                {% else %}
+                                    {% set username = 'discutea.forum.deleted.user'|trans %}
+                                    {% set email = post.poster.email %}
+                                {% endif %}
+                                
+                                {{ 'discutea.forum.by'|trans }} {{ username }} {{ 'discutea.forum.on'|trans }} {{ post.date|date("Y-m-d H:i:s") }} {{ email }}
+                            </span><br/>
+                            <span class="">
+                                <a href="{{ path('discutea_forum_post', {'slug': post.topic.slug}) }}#content{{ post.id }}">
+                                    {{ post.topic.title }}
+                                </a>
+                            </span>
+                        </p>
+                        <div class="raw" style="color:black;">
+                            {% set myPost = post.content|length > 150 ? post.content|slice(0, 150) ~ '...' : post.content %}
+                            {{ post.content | raw  }}
+                        </div>
+                        <a href="{{ path('discutea_forum_post', {'slug': post.topic.slug}) }}#content{{ post.id }}" class="btn btn-primary btn-xs pull-right">
+                            {{ 'discutea.forum.see'|trans }}
+                        </a>
+                      <div class="clearfix"></div>
+                    </div>
+                </li> 
+            {% endfor %}
+        </ul>
+    </div>
+         
+     

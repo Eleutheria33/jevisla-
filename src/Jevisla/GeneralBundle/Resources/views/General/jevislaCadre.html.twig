@@ -1,0 +1,37 @@
+<div id="page-top">
+    <div class="jumbotron">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+               <h1 class="choixActionAccueilTitle">
+                   JeVisLà
+               </h1>
+            </div>
+        </div>
+    </div>    
+    <span class="labelAllAlertesAccueil col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offset-2 col-xs-8">
+        Feuilletez les dernières alertes de votre <span class="jevislaVignette">JeVisLa</span> ! <br>
+    </span><br>
+    
+    <div class="panel-body"> 
+        {% if is_granted("IS_AUTHENTICATED_FULLY") %} 
+            {{ render(controller("JevislaAlerteBundle:Alerte:afficheAccueil", {'page': 1})) }}
+        {% endif %}
+    </div>
+</div>
+<br>
+<div class="jumbotron" id="carousel">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+           <h1 class="choixActionAccueilTitle">
+               Visite
+           </h1>
+        </div>
+    </div>
+    <span class="labelAllAlertesAccueil col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offset-2 col-xs-8">
+         Visite guidée de la plateforme <span class="jevislaVignette">JeVisLa</span> <br>
+    </span><br>
+    <div class="panel-body">
+        {% include 'JevislaGeneralBundle:General:carouselAccueil.html.twig' %}<br>
+    </div>
+</div>
+ 

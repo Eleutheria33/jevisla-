@@ -1,0 +1,185 @@
+<div class="header">
+    <h2>
+        <img class="logoM" src="{{ asset('img/LogoPropeMe.svg') }}" alt="Logo JevisLà"><br>
+        <span class="label label-danger">Le réseau social de proximité</span> 
+    </h2>  
+    
+    <p class="textWelcome"> Vous <strong>souhaiteriez</strong> donner, vendre, acheter, aider, discuter... 
+    <br> Vous avez perdu votre chat, votre chien, un objet... 
+    <br> Vous aimeriez <strong>inviter vos ami·e·s</strong>, vos voisins à un foot, une partie de boules, du shopping voire une balade...
+    <br> Ou encore faire un ciné, un resto entre ami·e·s du quartier... 
+    <br> Vous recherchez <strong>un événement culturel</strong> dans votre ville, département ou région...
+    <br> Vous endurez des nuisances sonores : chien qu'aboie, fêtes, beuveries, etc.
+    <br> Vous avez un différend avec un·e de vos voisin·e·s.
+    <br> La plateforme <span class="jevislaVignette">JeVisLa</span> vous permet tout cela.
+    <br> <strong>Osez</strong> le contact et discutez de tout <strong>en toute tranquillité</strong>. </p>
+</div>
+
+<nav id="navbar" class="navbar navbar-default">
+    <div id="tete" class="container-fluid col-lg-offset-3 col-md-offset-2 col-sm-offset-1 col-xs-offset-0">
+        <div class="navbar-header">
+            <button type="button" data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-header logo dessus onCacheXs">
+                <img src="{{ asset('img/LogoPropeMe.svg') }}" alt="Logo JevisLà">    
+            </div>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a class="pageScroll" href="{{ path('jevisla_general_homepage') }}#accueil">
+                        <span class="menuTopAccueil">Bienvenue</span>
+                    </a>
+                </li> 
+                <li>
+                    <a class="pageScroll" href="{{ path('jevisla_general_homepage') }}#page-top">
+                        <span class="menuTopAccueil">Jevislà</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="pageScroll" href="{{ path('jevisla_general_homepage') }}#carousel">
+                        <span class="menuTopAccueil">Visite</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="pageScroll" href="{{ path('jevisla_general_homepage') }}#qui">
+                        <span class="menuTopAccueil">Tableau de bord</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="pageScroll" href="{{ path('jevisla_general_homepage') }}#contact">
+                        <span class="menuTopAccueil">Contact</span>
+                    </a>
+                </li> 
+                {% if not is_granted("IS_AUTHENTICATED_FULLY") %}
+                    <li>
+                        <a href="{{ path('fos_user_security_login') }}">
+                            <span class="menuTopAccueil">Se connecter</span>
+                        </a>
+                    </li>
+                {%else%}
+                    <li>
+                        <a href="{{ path('fos_user_security_logout') }}">
+                            <span class="menuTopAccueil">Déconnexion</span>
+                        </a>
+                    </li>
+                {%endif%} 
+                {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                <!-- récupérationde l'object image controller et service -->
+                    <li>
+                        <div class="sizeImg imgNav pull-right">
+                        {% if app.user.image %}        
+                            <a data-toggle="modal" href="#profilShow">
+                                <img  src="{{ asset(app.user.image.webPath) }}" alt="{{ getObjetImageUser(app.user.id).alt }}" height="40" title="Profil"/>
+                            </a>
+                        {% else%}
+                            <a data-toggle="modal" href="#profilShow">
+                                <img  class="sizeImg"  src="{{ asset('img/user.png') }}" alt="{{ "pas de photo" }}"/>
+                            </a>
+                        {% endif%}       
+                        </div>
+                    </li> 
+                {%endif%} 
+            </ul>
+        </div>
+    </div>
+    {% if is_granted("IS_AUTHENTICATED_FULLY") %} 
+        <div id="jvlMenu" class="row col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">    
+            <div class="dropdown">
+                <button class="dropbtn">JevisLà 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <div class="headerMn">
+                        <h4>Menu</h4> 
+                    </div>   
+                    <div class="row menujvl">
+                        <div class="column">
+                            <h3 class="titreMn fontMenuJvl">Communiquer</h3>
+                            <div class="chat_ac ">
+                                <a class="fontMenuJvl" href="{{ path('jevisla_chat_maina_homepage') }}">
+                                    Chat
+                                    <span id="symbChat" class="glyphicon glyphicon-comment pull-right"></span>
+                                </a>
+                            </div>
+                            <div class="localisation_ac">
+                                <a class="fontMenuJvl" href="{{ path('jevisla_map_homepage') }}">
+                                    Carte/Messagerie
+                                    <span id="symbLocal" class="glyphicon glyphicon-home pull-right"></span>
+                                </a>
+                            </div>
+                            <div class="chat_ac">
+                                <a class="fontMenuJvl" href="{{ path('discutea_forum_homepage') }}">
+                                    Forums
+                                    <span id="symbChat" class="glyphicon glyphicon-comment pull-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="column"> 
+                            <h3 class="titreMn fontMenuJvl">Gérer</h3>
+                            <div class="modProfil_ac">
+                                <a class="fontMenuJvl" href="{{ path('fos_user_profile_edit') }}">
+                                    Modifier profil
+                                    <span id="symbModPrf" class="glyphicon glyphicon-user pull-right"></span>
+                                    <span id="symbModPrf" class="glyphicon glyphicon-pencil pull-right fontMenuJvl"></span>
+                                </a>
+                            </div>
+                            <div class="voirProfil_ac">
+                                <a  class="fontMenuJvl" href="{{ path('fos_user_profile_show') }}">
+                                    Voir profil
+                                    <span id="symbVuePrf" class="glyphicon glyphicon-user pull-right"></span>
+                                </a>
+                            </div>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <div class="">
+                                        <a class="fontMenuJvl" href="{{ path('jevisla_administration_home') }}">
+                                            Administration
+                                            <span id="symbEvtsCult" class="glyphicon glyphicon-music  pull-right"></span>
+                                            <span id="symbEvtsCult" class="glyphicon glyphicon-heart pull-right fontMenuJvl"></span>
+                                        </a>
+                                    </div>
+                                {% else %}
+                                {% endif %}   
+                        </div>
+                        <div class="column">
+                            <h3 class="titreMn fontMenuJvl">Evénements</h3>
+                            <div class="voirEvents_ac">
+                                <a class="fontMenuJvl" href="{{ path('jevislaevts_culturels_homepage') }}">
+                                    Evénements Culturels
+                                    <span id="symbEvtsCult" class="glyphicon glyphicon-music  pull-right"></span>
+                                    <span id="symbEvtsCult" class="glyphicon glyphicon-heart pull-right fontMenuJvl"></span>
+                                </a>
+                            </div>
+                            <div class="alerte_ac">
+                                <a  class="fontMenuJvl" href="{{ path('jevisla_alerte_home') }}">
+                                    Alertes
+                                    <span id="symbAlert" class="glyphicon glyphicon-warning-sign pull-right"></span>
+                                </a>
+                            </div>
+                            <div class="voirEvents_ac">
+                                <a class="fontMenuJvl" href="#">
+                                    à venir
+                                </a>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div> 
+        </div>  
+    {%endif%} 
+<script>    
+{% if is_granted("IS_AUTHENTICATED_FULLY") %}    
+sessionStorage.setItem('id',  {{ app.user.id }});
+sessionStorage.setItem('codePostal',  {{ app.user.codePostal }});
+sessionStorage.setItem('latitude',  {{ app.user.latitude }});
+sessionStorage.setItem('longitude',  {{ app.user.longitude }});
+sessionStorage.setItem('latitudeEC', {{ app.user.latitude }} ); 
+sessionStorage.setItem('longitudeEC', {{ app.user.longitude }} );   
+{% endif %} 
+</script>    
+</nav>

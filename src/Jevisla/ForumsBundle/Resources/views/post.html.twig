@@ -1,0 +1,50 @@
+{% extends "@DForum/layout.html.twig" %}
+
+{% block title %}
+    {{ topic.title }}
+{% endblock %}
+
+{% block Fbody %}
+    <h1 id="editPosts" class="text-center">
+        <span class="label label-success"> {{ topic.title }} </span>
+    </h1>
+    {{ knp_pagination_render(posts) }}
+    {% if topic.closed == true %}
+        <div class="alert alert-danger">
+            {{ 'discutea.forum.label.isclosed'|trans }}
+        </div>
+    {% endif %}
+    {% if topic.resolved == true %}
+        <div class="alert alert-success">
+            {{ 'discutea.forum.label.issolved'|trans }}
+        </div>
+    {% endif %}
+    {% if topic.pinned == true %}
+        <div class="alert alert-warning">
+            {{ 'discutea.forum.label.ispinned'|trans }}
+        </div>
+    {% endif %}
+    <ul class="list-unstyled">
+        {% for post in posts %}
+            {% include '@DForum/Post/single-post.html.twig' %}
+        {% endfor %}
+        {% if postpreview %}
+            {% include '@DForum/Post/preview-post.html.twig' %}
+        {% endif %}
+        {% if is_granted('CanEditTopic', topic) %}
+            {% include '@DForum/label.html.twig' %}
+        {% endif %}
+    </ul>
+    {{ knp_pagination_render(posts) }}
+    {% if form is not null %}
+        <h3 id="editPosts">
+            <span class="label label-warning"> Nouveau message </span>
+        </h3>
+        {% if date(topic.lastpost) < date('-1month') %}
+            <div class="alert alert-danger text-center" role="alert">
+                {{ 'discutea.forum.post.aged'|trans }}
+            </div>
+        {% endif %}
+        {% include '@DForum/Form/Post.html.twig' %}
+    {% endif %}
+{% endblock %}

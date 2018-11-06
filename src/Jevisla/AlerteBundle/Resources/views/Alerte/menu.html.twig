@@ -1,0 +1,34 @@
+{# src/Jevisla/AlerteBundle/Resources/views/Alerte/menu.html.twig #}
+
+<ul class="nav nav-pills nav-stacked">
+    <div id="accordion" class="panel-group">
+        {% for keys, groupAlert in listAlertCat %}
+            <a class="alerteMenu" href="{{ '#'~keys|replace({' ' : '-', "'" : "-"}) }}" class="menuCat {{ keys }}" data-parent="#accordion" data-toggle="collapse">     
+               <div  class="panel-primary ">
+                   <div class="panel-heading">
+                       <h6 class="panel-title"> {{ keys }}
+                           <span class="glyph2_toggleable glyphicon glyphicon-hand-right pull-right"></span>
+                           <span>{{ '(' ~ groupAlert|length ~ ')' }}</span>
+                       </h6>
+                   </div>
+               </div> 
+            </a>
+            <div id="{{ keys|replace({' ' : '-', "'" : "-"}) }}" class="panel-collapse collapse">  
+                <div class="panel-body col-lg-offset-0 col-md-12" style="background: #f2fafc;">
+                    {% for alerte in groupAlert %}
+                        <li>
+                            <a class="alerteMenuTitle" href="{{ path('jevisla_alerte_view', {'id': alerte.id}) }}">
+                              {{ alerte.title }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </div>
+            </div> 
+        {% else %}
+            <div>
+                Pas ( encore !) d'alertes
+            </div>
+        {% endfor %}
+    </div>
+</ul>
+

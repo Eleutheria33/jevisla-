@@ -1,0 +1,39 @@
+{# src/Jevisla/AlerteBundle/Resources/views/delete.html.twig #}
+
+{% extends "JevislaAlerteBundle::layout.html.twig" %}
+
+{% block body %}
+    <div class="col-lg-offset-3 col-lg-10 slider">    
+        <div class="panel panel-success">
+            <div class="panel panel-heading "> 
+                <h3 class="panel-title">Suppression</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row  col-lg-offset-2 col-lg-8">   
+                    <div>  
+                        <h2 >Supprimer une alerte</h2>
+                        <p>
+                            Etes-vous certain de vouloir supprimer cette alerte ? <br> 
+                            <div class="alert alert-danger alerteGestionTitle">
+                                "{{ alerte.title }}"
+                            </div>
+                            <br>
+                        </p>
+                         {# On met l'id de l'annonce dans la route de l'action du formulaire #}
+                        <form  action="{{ path('jevisla_alerte_delete', {'id': alerte.id}) }}" method="post">
+                            <a href="{{ path('jevisla_alerte_view', {'id': alerte.id}) }}" class="btn btn-info">
+                                <i class="glyphicon glyphicon-chevron-left"></i>
+                                Retour à l'alerte
+                            </a>
+                          {# Ici j'ai écrit le bouton de soumission à la main #}
+                            <input type="submit" value="Supprimer" class="btn btn-danger pull-right" />
+                            {# Ceci va générer le champ CSRF #}
+                            {{ form_rest(form) }}
+                        </form>
+                    </div>  
+                </div>   
+            </div>
+        </div>
+    </div>                   
+{% endblock body %}
+

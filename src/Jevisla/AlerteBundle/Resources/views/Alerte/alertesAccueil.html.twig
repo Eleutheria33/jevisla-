@@ -1,0 +1,39 @@
+  
+<div class="alertesBandeau">
+    <a href="#contentAlerteAccueil{{ alerte.id }}" data-toggle="collapse">  
+        <div class="row">
+            <h4 class="contentTitleAlertesAccueil col-lg-12 col-md-12 col-sm-12 col-xs-12">{{ alerte.title }}</h4>
+            <span class="contentAuthorAlertesAccueil pull-right">
+                par 
+                <span class="label label-success">
+                    {{ alerte.author }}
+                </span>
+                , le {{ alerte.date|date('d/m/Y') }}
+            </span>
+        </div>
+         
+    </a>
+    <div id="contentAlerteAccueil{{ alerte.id }}" class="collapse" data-parent="#nivelle">
+        {% if alerte.imageAlerte is not null %}
+            <img  class="imageAlertesAccueil col-lg-2 col-md-2 col-sm-7 col-xs-12"
+              src="{{ alerte.imageAlerte.webPath | imagine_filter('thumb_alerteAC') }}"
+              alt="{{ alerte.imageAlerte.alt }}"/>
+        {% else %}  
+            <img class="imageAlertesAccueil col-lg-2 col-md-2 col-sm-7 col-xs-12"
+              src="{{ 'uploads/img/jevisla2.jpg' | imagine_filter('thumb_alerteAC') }}"
+              alt=" alerte jevislà "/>  
+        {% endif %}
+        <span class="contentAlertesAccueil"> 
+            {{ alerte.content|raw  }} 
+        </span>
+        <a href="{{ path('jevisla_alerte_view', {'id': alerte.id}) }}">
+            <i class="glyphicon glyphicon-plus-sign pull-right">Répondre</i>
+        </a>
+    </div>
+</div>
+
+   
+
+   
+
+

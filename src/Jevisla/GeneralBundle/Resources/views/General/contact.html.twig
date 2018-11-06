@@ -1,0 +1,42 @@
+<div id="contact">
+    <div class="jumbotron choixActionAccueil">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="choixActionAccueilTitle">
+                    Contact
+                </h1>
+            </div>
+        </div>
+        <div id="content" class="col-md-12">
+             <div id="flashMessage" class="panel panel-success" onclick="deleteFlash();">
+                <div class="panel-heading">
+                    <p class="panel-title messageFlash"></p>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body ">
+            
+            <form action="javascript:formulaireContact()">
+                
+                    <h4 class="label label-info">
+                        Laissez-nous un message !
+                    </h4>
+                
+                <br><br>
+                <span class="label label-info">Votre Message</span><br><br>
+                <div class="">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <input type="email" placeholder="Votre Email" class="mailContact" required="required"> <!--title="format: _________@_____.__" pattern="^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$"-->
+                    </div> 
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <textarea id="editor6" name="editor6"></textarea>
+                    </div> 
+                    <button class="col-md-1 btn btn-warning sendContact">
+                        Envoyer
+                    </button>
+                </div> 
+            </form>
+        </div>
+    </div>    
+</div>
+ 

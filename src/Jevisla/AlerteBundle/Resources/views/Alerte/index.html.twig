@@ -1,0 +1,32 @@
+{# src/Jevisla/AlerteBundle/Resources/views/Alerte/index.html.twig #}
+{% extends "JevislaAlerteBundle::layout.html.twig" %}
+
+{% block title %}
+    Accueil - {{ parent() }}
+{% endblock %}
+{% block bodyAlerte %}
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            {% if  routeEnCours == 'jevisla_alerte_author' %}
+               <h2 class="panel-title">Mes alertes</h2>    
+            {% else %}    
+               <h2 class="panel-title">Liste des alertes</h2>
+            {% endif %}
+            
+        </div>
+    </div>
+    {% include 'JevislaAlerteBundle:Alerte:pagination.html.twig' %}   
+        <div class="row">
+            {% for alerte in listAlertes %}
+                <div class="img-thumbnail col-lg-6 alertesPar3" >
+                    <a href="{{ path('jevisla_alerte_view', {'id': alerte.id}) }}">  
+                    {{ render(controller("JevislaAlerteBundle:Alerte:miniature", {'id': alerte.id})) }}  
+                    </a>
+                </div>
+            {% else %}
+                <div>Pas (encore !) d'alertes</div>
+            {% endfor %}
+        </div>
+    {% include 'JevislaAlerteBundle:Alerte:pagination.html.twig' %} 
+{% endblock %}
+

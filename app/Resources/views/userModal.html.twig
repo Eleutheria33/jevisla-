@@ -1,0 +1,128 @@
+{# empty Twig template #}
+  {% trans_default_domain 'FOSUserBundle' %}
+{% if is_granted("IS_AUTHENTICATED_FULLY") %}  
+    <div class="modal" id="profilShow">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                    <h4 class="modal-title">Plus d'informations</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel panel-success ">
+                        <div class="panel panel-heading ">
+                            <h3 class="panel-title">Profil</h3>
+                        </div>
+                        <div class="panel-body ">
+                             <div class="row">   
+                                <div class="fos_user_user_show ">
+                                    <div class="fos_user_user_show col-md-12"> 
+                                        <div class="panel panel-info">
+                                            <table class="table "> 
+                                                <div class="panel panel-heading ">
+                                                    <h3 class="panel-title">Identité</h3>
+                                                </div>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="longP">{{ 'profile.show.username'|trans }}</td>
+                                                        <td><span class="label label-info"> {{ app.user.username }} </span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="longP">{{ 'profile.show.prenom'|trans }}</td>
+                                                        <td><span class="label label-info">{{ app.user.prenom }}</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="longP">{{ 'profile.show.pseudo'|trans }}</td>
+                                                        <td><span class="label label-info">{{ app.user.pseudo }}</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="longP"></td>
+                                                        <td><img class="signlogo"  src="{{ asset('img/LogoPropeMe.svg') }}" alt="Logo JevisLà"></td>    
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div> 
+                                    </div>            
+                                    <div class="fos_user_user_show col-md-12">            
+                                        <div class="panel panel-info">
+                                            <table class="table">
+                                                <div class="panel panel-heading ">
+                                                    <h3 class="panel-title">Adresse</h3>
+                                                </div>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="longP">{{ 'profile.show.numeroAd'|trans }}</td>
+                                                        <td><span class="label label-info">{{ app.user.numeroAd }}</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="longP">{{ 'profile.show.voieAd'|trans }}</td>
+                                                        <td><span class="label label-info">{{ app.user.voieAd }}</span></td>
+                                                    </tr>
+                                                     <tr>
+                                                        <td class="longP">{{ 'profile.show.nomVoieAd'|trans }}</td>
+                                                        <td><span class="label label-info">{{ app.user.nomVoieAd }}</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="longP">{{ 'profile.show.villeAd'|trans }}</td>
+                                                        <td><span class="label label-info">{{ app.user.villeAd }}</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="longP">{{ 'profile.show.codePostal'|trans }}</td>
+                                                        <td><span class="label label-info">{{ app.user.codePostal }}</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="longP"></td>
+                                                        <td><img class="signlogo"  src="{{ asset('img/LogoPropeMe.svg') }}" alt="Logo JevisLà"></td>    
+                                                    </tr>
+                                                   </tbody>
+                                            </table>
+                                        </div>
+                                    </div>            
+                                </div>
+                                <div class="fos_user_user_show col-md-12">
+                                    <div class="panel panel-info">
+                                        <table class="table">
+                                            <div class="panel panel-heading ">
+                                                <h3 class="panel-title">Contact</h3>
+                                            </div>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="longP">{{ 'profile.show.portable'|trans }}</td>
+                                                    <td><span class="label label-info">{{ app.user.portable }}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="longP">{{ 'profile.show.email'|trans }}</td>
+                                                    <td class="sizeProfilShow"><span class="label label-info ">{{ app.user.email }} </span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="longP"></td>
+                                                    <td><img class="signlogo"  src="{{ asset('img/LogoPropeMe.svg') }}" alt="Logo JevisLà"></td>    
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="fos_user_user_show col-md-12 col-xs-12 col-sm-12">
+                                    <div class="panel panel-info">
+                                        <div class="panel panel-heading ">
+                                            <h3 class="panel-title">Photo</h3>
+                                        </div>
+                                        <div class="panel-body">  
+                                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                                {% if app.user.image %}        
+                                                    <img class="userModalImg" src="{{ asset(getObjetImage().webPath) }}" alt="{{ getObjetImage().alt }}" height="auto" title="Profil"/>
+                                                {% else%}
+                                                    <img class="userModalImg" src="{{ asset('img/user.png') }}" alt="{{ "pas de photo" }}" height="80" />
+                                                {% endif%}       
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div>    
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif%}

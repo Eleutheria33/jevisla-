@@ -1,0 +1,29 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    
+    <div id="checkMail" class="col-md-6 col-sm-6 col-xs-12 slider">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div> 
+                    <p class="checkMail">
+                        {{ 'registration.confirmed'|trans({'%prenom%': user.prenom, '%username%': user.username}) }}
+                    </p>
+                    {% if targetUrl %}
+                        <p>
+                            <a href="{{ targetUrl }}">
+                                {{ 'registration.back'|trans }}
+                            </a>
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+            <div style="margin-top: 250px;">
+                <img class="signlogo"  src="{{ asset('img/LogoPropeMe.svg') }}" alt="Logo JevisLà">    
+            </div>    
+  
+        </div>
+    </div>
+{% endblock fos_user_content %}

@@ -1,0 +1,50 @@
+jevisla_messagerie:
+    resource: "@JevislaMessagerieBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jevisla_forums:
+    resource: "@JevislaForumsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml" 
+
+jevisla_chat_room:
+    resource: "@JevislaChatRoomBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jevislaevts_culturels:
+    resource: "@JevislaEvtsCulturelsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jevisla_administration:
+    resource: "@JevislaAdministrationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jevisla_map:
+    resource: "@JevislaMapBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jevisla_alerte:
+    resource: "@JevislaAlerteBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jevisla_user:
+    resource: "@JevislaUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jevisla_general:
+    resource: "@JevislaGeneralBundle/Resources/config/routing.yml"
+    
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+    
+discutea_forum:
+    resource: "@DForumBundle/Resources/config/routing.yml"
+    prefix:   /
+    
+
+ 

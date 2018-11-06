@@ -1,0 +1,26 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <div id="checkMail" class="col-md-6 col-sm-6 col-xs-12 slider">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h2 class="panel-title">
+                    Validation email
+                </h2>
+            </div>
+            <div class="panel-body">
+                <div> 
+                   <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p> 
+                </div>
+            </div>
+            <div style="margin-top: 250px;">
+                <img class="signlogo"  src="{{ asset('img/LogoPropeMe.svg') }}" alt="Logo JevisLà">    
+            </div>    
+        </div>
+    </div>
+ {% endblock fos_user_content %}
+
+
+ 

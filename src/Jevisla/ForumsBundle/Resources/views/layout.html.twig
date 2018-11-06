@@ -1,0 +1,53 @@
+{% extends "::base.html.twig" %}
+   
+{% block stylesheets %}
+    {{ parent() }}
+<style>
+    .starter-template {
+        padding: 40px 15px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">    
+        <nav class="navbar navbar-inverse slider">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" style="color:white;" href="#">DForumBundle</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a style="color:white;" href="{{ path('discutea_forum_homepage') }}">Accueil</a>
+                    </li>
+                    <li>
+                        {% if is_granted('ROLE_MODERATOR') %}
+                            <a style="color:white;" href="{{ path('discutea_forum_admin_dashboard') }}">Administration</a>
+                        {% else %}
+                        {% endif %}    
+                    </li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </nav>
+    </div>                
+    <div class="container">
+        <div class="starter-template">
+            {% for label, flashes in app.session.flashbag.all %}
+                {% for flash in flashes %}
+                    <div class="alert alert-{{ label }}">
+                        {{ flash }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% block Fbody %}{% endblock %}
+        </div>
+    </div><!-- /.container -->
+{% endblock body %} 
+ 
+  

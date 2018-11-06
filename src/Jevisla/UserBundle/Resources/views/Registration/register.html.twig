@@ -1,0 +1,12 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+    <div id="header" class="slider col-md-6 col-md-offset-3" >
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h2 class="panel-title aligneText"> Pas encore inscrit ? </h2>
+            </div>
+        </div>
+    </div>
+    {% include "@FOSUser/Registration/register_content.html.twig" %}
+{% endblock fos_user_content %}

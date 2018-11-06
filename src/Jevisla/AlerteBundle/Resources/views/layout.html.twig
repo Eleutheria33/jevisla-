@@ -1,0 +1,86 @@
+{# src/Jevisla/alerteBundle/Resources/views/layout.html.twig #}
+
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="panel panel-info container slider plateformeAlerte">
+        <div id="header" class="jumbotron plateformeAlerte panel-heading">
+            <h1  class="panel-title alerteLayoutTitle">Plateforme d'alertes</h1>
+        </div>
+        <div class="row">
+            <div id="menu" class="panel-group col-md-3">
+                <ul class="nav nav-pills nav-stacked">
+                    <li>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <a class="alerteLayoutHeading" href="{{ path('jevisla_alerte_home') }}"><h4 class="panel-title">Accueil</h4></a>
+                            </div>
+                        </div>    
+                    </li>
+                    <a href="#gestionAlerte" data-toggle="collapse" class="alerteLayoutHeading">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">Gestion alertes
+                                <span id="chevron" class="glyph_toggleable glyphicon glyphicon glyphicon-hand-right  pull-right"></span>
+                                </h4>
+                            </div>
+                        </div>
+                    </a>    
+                    <div id="gestionAlerte" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading">
+                                    <li>
+                                        {% if  is_granted("IS_AUTHENTICATED_FULLY")  %} 
+                                            <a class="panel-title" href="{{ path('jevisla_alerte_add') }}">Ajouter une alerte</a><br>
+                                            <a class="panel-title" href="{{ path('jevisla_alerte_author', {'page': '1','authorId': app.user.id}) }}">
+                                            Mes alertes
+                                            </a>
+                                        {% else %}
+                                            <a class="panel-title" href="{{ path('fos_user_security_login') }}">Ajouter une alerte</a>    
+                                        {% endif %}    
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>            
+                </ul>
+                <a id="declencheur" href="#alerte" data-parent="#menu" data-toggle="collapse" style="text-decoration: none;">     
+                    <div class="panel panel-primary ">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Toutes les alertes
+                                <span id="chevron" class="glyph_toggleable glyphicon glyphicon glyphicon-hand-right  pull-right"></span>
+                            </h4>
+                        </div>
+                    </div>
+                </a>
+                <div id="alerte" class="panel-collapse collapse">  
+                    <div class="panel-body col-md-12">
+                        {{ render(controller("JevislaAlerteBundle:Alerte:menu", {'limit': 50})) }}
+                    </div>
+                </div>
+            </div>
+            <div id="content" class="col-md-9">
+                {% for flashbags in app.session.flashbag.all %}
+                    {% for message in flashbags %}
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <p class="panel-title"> {{ message }} </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+              <hr>   
+              {% block bodyAlerte %}
+              {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+  
+
+  

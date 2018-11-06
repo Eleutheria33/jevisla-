@@ -1,0 +1,4 @@
+services:
+#    jevisla_chat_room.example:
+#        class: Jevisla\ChatRoomBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

@@ -1,0 +1,24 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <div class="container slider">
+        <div class="vertical-offset-80">
+            <div class="row slider">
+                <div class="col-md-offset-3 col-md-6 col-md-offset-3">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                Réinitialisation
+                            </h3>
+                        </div>  
+                        <div class="panel-body">
+                             {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
+                        </div>
+                    </div>
+                </div>
+            </div>                    
+        </div>
+    </div>                     
+{% endblock %}

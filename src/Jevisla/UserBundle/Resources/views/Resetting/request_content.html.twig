@@ -1,0 +1,37 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="row slider" style="margin-top: 200px;">
+    <div class="col-md-offset-3 col-md-6 col-md-offset-3">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Réinitialisation du mot de passe
+                </h3>
+            </div>  
+            <div class="panel-body">
+                <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request margeTopResttingUser">
+                    <div>
+                        <label for="username">{{ 'resetting.request.username'|trans }}</label>
+                        <input type="text" id="username" name="username" required="required" />
+                    </div>
+                        </br>    
+                    <div>
+                        <input class="btn btn-sm btn-info" type="submit" value="{{ 'resetting.request.submit'|trans }}" />
+                    </div>
+                </form>
+            </div>
+            <div class="margeTopResttingUser">
+                <img class="signlogo"  src="{{ asset('img/LogoPropeMe.svg') }}" alt="Logo JevisLà">    
+            </div>        
+        </div>
+    </div>
+</div>                    
+
+
+
+
+
+
+
+
+

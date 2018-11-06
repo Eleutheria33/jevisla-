@@ -1,0 +1,16 @@
+{% extends "JevislaGeneralBundle::layout.html.twig" %}
+{% block body %}
+    <div class="slider">    
+        <div class="content"> 
+        <!-- ======================== -->
+            <div class="container">
+                {% include 'JevislaGeneralBundle:General:choixAction.html.twig' %}<br>
+                {% include 'JevislaGeneralBundle:General:jevislaCadre.html.twig' %} 
+                {% include 'JevislaGeneralBundle:General:alertes.html.twig' %} <br> 
+                {% include 'JevislaGeneralBundle:General:contact.html.twig' %}    
+            </div>
+        </div> 
+    </div>      
+{% endblock body %} 
+
+

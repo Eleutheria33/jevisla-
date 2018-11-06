@@ -1,0 +1,42 @@
+{# empty Twig template #}
+{% extends "JevislaAdministrationBundle::layout.html.twig" %}
+
+{% block title %}
+    Lecture d'une catégory - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="container slider">
+        <div class="panel panel-info adminPanel">
+            <div  class="panel-heading">
+                <h1 class="panel-title adminPanelTitle">Gestion Category</h1>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-10 col-xs-10">
+                <div class="panel panel-info well plateformeAdmin">
+                    <div class="panel-heading">
+                        <h3 class="panel-title categFormAdmin">Category</h3>
+                    </div><br>
+                    <div class="well">
+                        {{ category.name }} 
+                    </div>      
+                    <p>
+                        <a href="{{ path('jevisla_administration_home') }}" class="btn btn-info">
+                            <i class="glyphicon glyphicon-chevron-left"></i>
+                            Retour à la liste
+                        </a>
+                        <a href="{{ path('jevisla_administration_updatecategory', {'id': category.id}) }}" class="btn btn-success">
+                            <i class="glyphicon glyphicon-edit"></i>
+                            Modifier la catégorie...
+                        </a>
+                        <a data-toggle="modal" href="{{ path('jevisla_administration_delete', {'id': category.id}) }}" class="btn btn-danger">
+                            <i class="glyphicon glyphicon-trash"></i>
+                            Supprimer la catégorie...
+                        </a>
+                    </p>
+                </div>
+            </div><br>
+        </div>    
+    </div><br>    
+{% endblock %}  

@@ -1,0 +1,3 @@
+jevisla_chat_maina_homepage:
+    path:     /chatroom 
+    defaults: { _controller: JevislaChatRoomBundle:ChatRoom:chatRoomMaina }

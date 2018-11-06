@@ -1,0 +1,39 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+            
+    encoders:
+         
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_USER:        ROLE_VISITEUR
+        ROLE_MODERATOR:   ROLE_USER
+        ROLE_ADMIN:       ROLE_MODERATOR
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+
+    firewalls:
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                require_previous_session: false
+ 
+            logout:       true
+            anonymous:    true
+
+    access_control:
+        - { path: ^/accueil, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/edit, role: ROLE_USER }
+        - { path: ^/show, role: ROLE_USER }        
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/category, role: ROLE_ADMIN }  
+        

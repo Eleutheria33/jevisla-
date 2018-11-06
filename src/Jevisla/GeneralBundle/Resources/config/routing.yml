@@ -1,0 +1,18 @@
+jevisla_general_homepage:
+    path:     / 
+    defaults: { _controller: JevislaGeneralBundle:General:index }
+    
+jevisla_general_accueil:
+    path:     /accueil
+    defaults: { _controller: JevislaGeneralBundle:General:index }    
+    
+jevisla_general_contact:
+    path:     /contact
+    defaults: { _controller: JevislaGeneralBundle:General:contact } 
+    
+jevisla_general_sendContact:
+    path:     /sendContact
+    defaults: 
+        _controller: JevislaGeneralBundle:General:sendContact  
+    options:
+        expose: true

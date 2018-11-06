@@ -1,0 +1,81 @@
+{# src/Jevisla/MessagerieBundle/Resources/views/Messagerie/index.html.twig #}
+{% extends "JevislaMessagerieBundle::layout.html.twig" %}
+
+{% block title %}
+    Accueil - {{ parent() }}
+{% endblock %}
+{% block body %}
+    <div class="container messagerie">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title">
+                    Conversation
+                </h2> 
+            </div>
+        </div>
+        <audio autoplay="false" id="beep" src="{{ asset('audio/messagerie1.wav')}}">
+        </audio>
+        <div class="panel-body" style="margin-top: 50px;">
+            <div class="enteteMessagerie">
+                <span class="col-md-1 col-sm-2 col-xs-4">
+                    {% if getObjetImageAvatar(user) %}
+                        <img  src="{{ asset(getObjetImageAvatar(user).webPath) }}" alt="{{ asset(getObjetImageAvatar(user).alt) }}" height="60" title="Profil"/>
+                    {% else%}
+                        <img  class="sizeImg"  src="{{ asset('img/user.png') }}" alt="utilisateur"/>
+                    {% endif%}
+                    <span class="label label-success"> {{ pseudo1 }} </span>
+                </span>
+                <span class="col-md-1 col-sm-2 col-xs-4 pull-right">
+                    {% if getObjetImageAvatar(voisin) %}
+                        <img src="{{ asset(getObjetImageAvatar(voisin).webPath) }}" alt="{{ asset(getObjetImageAvatar(voisin).alt) }}" height="60" title="Profil"/>
+                    {% else%}
+                        <img  class="sizeImg"  src="{{ asset('img/user.png') }}" alt="user"/>
+                    {% endif%}
+                    <div class="label label-info"> {{ pseudo2 }} </div>
+                </span>
+            </div>
+            <div id="converse" data-idOne="{{ id }}" data-idTwo="{{ idVoisin }}" data-converse="{% if conversation != "nulle" %} {{ conversation.id }} {% endif %}" class="row">
+                <div id="conversation" class="col-md-12 col-sm-12 col-xs-12 colonneMessage">
+                    {% if conversation != "nulle" %} 
+                        {% for message in conversation.message %}    
+                            {% if message.idUser == id %}
+                                <div class="lastMessage" data-datetime="{{ message.dateCreation|date('Y-m-d H:i:s') }}"> 
+                                    <div class="col-md-7 col-sm-7 col-xs-7 messagerieVoisinId" >
+                                        <span class="pull-left">{{ message.message | raw }}</span>
+                                        <span class="pull-right messagerieDateStyle">Le {{ message.dateCreation|date('d-m-Y à H:i:s') }}</span>
+                                    </div>
+                                </div> 
+                             {% else %}
+                                <div class="lastMessageVoisin" data-datetime="{{ message.dateCreation|date('Y-m-d H:i:s') }}"> 
+                                    <div class="col-md-offset-5 col-md-7 col-sm-offset-5 col-sm-7 col-xs-offset-5 col-xs-7 messagerieVoisinVoisin"> 
+                                        <span class="pull-left">{{ message.message | raw }}</span>
+                                        <span class="pull-right messagerieDateStyle">Le {{ message.dateCreation|date('d-m-Y à H:i:s') }}</span>
+                                    </div>
+                                </div> 
+                             {% endif %}
+                        {% endfor %}
+                    {% else %}
+                       {% set conversation = "Aucune conversation en cours" %}
+                    {% endif %}    
+                </div>    
+                <div class="img-thumbnail col-md-12 col-sm-12 col-xs-12 areaMessagesVoisin">
+                    <label for="textarea">Rédigez votre message :</label>
+                    <textarea id="editor5" name="editor5"></textarea>
+                    <button id="messageVoisin" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-ok-sign"></span> Envoyer
+                    </button>
+                    <span class="stateAjax pull-right"> 
+                        <span class="infoConnexion label label-default">Lancer la réception des messages >></span>
+                        <a id="receptionMess"  class="label label-danger" onclick="receiveMessage()">Offline</a>
+                        <i id="ws-connection-status" class="connection-status"></i> 
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <script>
+        var readLastMessages = document.getElementById('conversation');
+        readLastMessages.scrollTop = readLastMessages.scrollHeight; 
+    </script>                
+{% endblock %}
+

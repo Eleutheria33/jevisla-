@@ -1,0 +1,16 @@
+{# empty Twig template #}
+{{ form_start(form, { 'action': path('jevisla_alerte_reponseAlerte', {'id' : app.session.get('alerteId')}), 'attr': { 'class': 'jevisla_alerte_reponseAlerte' } }) }}
+    <div class="form-group">
+         {# Génération du label. #}
+         {{ form_errors(form.content) }}
+        <div class="col-sm-12">
+            {# Génération de l'input. #}
+            {{ form_widget(form.content, {'attr': {'class': 'form-control ckeditor'}}) }}
+        </div>
+    </div>
+    <br>       
+    {{ form_label(form.envoyer, "Valider", {'label_attr': {'class': 'control-label'}}) }}
+    <div class="col-md-4 pull-left">
+        {{ form_widget(form.envoyer, {'attr': {'class': 'btn btn-info'}}) }}              
+    </div> 
+{{ form_end(form) }}  

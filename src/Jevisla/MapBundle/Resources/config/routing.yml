@@ -1,0 +1,23 @@
+jevisla_map_homepage:
+    path:     /localisation
+    defaults: { _controller: JevislaMapBundle:Map:index }
+    
+jevisla_map_recupvoisins:
+    path:     /localisation/voisins 
+    defaults:
+        _controller: JevislaMapBundle:Map:recupVoisins
+    options:
+        expose: true
+        
+jevisla_map_coordonnees:
+    path:     /localisation/coordonnees 
+    defaults:
+        _controller: JevislaMapBundle:Map:recupCoordonnees
+    options:
+        expose: true
+        
+jevisla_map_ficheUserGM:
+    path:     /localisation/ficheUserGoogleMap 
+    defaults:
+        _controller: JevislaMapBundle:Map:formFicheUserGM
+     

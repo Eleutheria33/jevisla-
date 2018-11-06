@@ -1,0 +1,6 @@
+{# empty Twig template #}
+{% extends "::base.html.twig" %}
+{% block javascripts %}  
+   {{ parent() }}
+   <script src="{{ asset('js/Coordonnees/APIcoordonnees.js') }}"></script>
+{% endblock javascripts %} 

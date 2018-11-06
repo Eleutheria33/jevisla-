@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta property="og:url"           content="http://jevisla.prope-me.com/"/>
+        <meta property="og:type"          content="website"/>
+        <meta property="og:title"         content="jevisla"/>
+        <meta property="og:description"   content="jevisla est un site dédié à toutes les communications entre voisins"/>
+        <meta property="og:image"         content="http://jevisla.prope-me.com"/>
+        <title>
+            {% block title %}
+                    Plateforme JeVisLà
+            {% endblock %}
+        </title>
+        {% block stylesheets %}
+            {# On charge le CSS de bootstrap depuis le site directement #}
+            <link rel="stylesheet" type="text/css" href="{{ asset('CSS/carousel.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('CSS/style.css') }}">
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+            <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+        {% endblock %}
+    </head>
+    <body>
+        {% block nav %}
+            {% include '::nav_inside.html.twig' %}
+        {% endblock %}
+        {% block userModal %}
+            {% include '::userModal.html.twig' %}
+            {% include '::photoUserModal.html.twig' %}
+        {% endblock userModal %}
+        {% block choice %}  
+        {% endblock choice %}  
+        {% block chat %}
+        {% endblock chat %}
+        {% block evtsCulturels %}
+        {% endblock evtsCulturels %}
+        {% block entete %}
+        {% endblock entete %}
+        {% block corps %}
+        {% endblock corps %} 
+        {% block body %}
+        {% endblock %}
+        {% block footer %}
+            {% include '::footer.html.twig' %}
+        {% endblock footer %}
+        {% block javascripts %}   
+            {#  #}
+            <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/twig.js/0.8.9/twig.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+            <script src="//cdn.ckeditor.com/4.10.1/full/ckeditor.js"></script>
+            <script async defer src="//maps.googleapis.com/maps/api/js?libraries=geometry&libraries=drawing&libraries=places&libraries=visualization&key=AIzaSyAPIfqAvavGZ0nCCGEQ2ViULbxlnIecUEg"></script>  
+            <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            <script src="{{ asset('js/adresseCompletion.js') }}"></script>
+            <script src="{{ asset('js/Base/base.js') }}"></script>
+            <script src="{{ asset('js/General/general.js') }}"></script>
+            <script src="{{ asset('js/CarouselAccueil/carousel.js') }}"></script> 
+            <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+            <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+        {% endblock javascripts %}  
+    </body>
+</html>

@@ -1,0 +1,20 @@
+jevislaevts_culturels_homepage:
+    path:     /evenementsCulturels/{page}
+    defaults: 
+        _controller: JevislaEvtsCulturelsBundle:EvtsCulturels:index 
+        page:        1
+    requirements:
+        page: \d*
+        
+jevislaevts_culturels_chargement:
+    path:     /evenementsCulturels/chargementCommune
+    defaults: 
+        _controller: JevislaEvtsCulturelsBundle:EvtsCulturels:chargementCommune 
+        
+jevislaevts_searchCommune_homepage:
+    path:     /evenementsCulturels/searchCommune/ 
+    defaults: 
+        _controller: JevislaEvtsCulturelsBundle:EvtsCulturels:searchCommunes 
+    options:
+        expose: true    
+  

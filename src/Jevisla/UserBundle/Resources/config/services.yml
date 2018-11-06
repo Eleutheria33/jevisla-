@@ -1,0 +1,14 @@
+services:
+#    jevisla_user.example:
+#        class: Jevisla\UserBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    jevisla.user.form.registration:
+        class: Jevisla\UserBundle\Form\RegistrationType
+        tags: 
+            - { name: form.type, alias: jevisla_user_registration }
+            
+    jevisla.user.form.profile:
+        class: Jevisla\UserBundle\Form\ProfileType
+        tags: 
+            - { name: form.type, alias: jevisla_user_profile }
+     

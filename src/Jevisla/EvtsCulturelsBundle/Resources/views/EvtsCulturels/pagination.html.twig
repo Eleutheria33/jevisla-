@@ -1,0 +1,16 @@
+<ul class="pagination">
+    {% set pageRetour = page - 1  %}
+        <li class="page-item">
+            <a class="page-link" href="{{ path('jevislaevts_culturels_homepage', {'page': pageRetour} ) }}">&laquo;</a>
+        </li>
+    {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+        {% for p in range(1, nbPages) %}
+            <li{% if p == page %} class="active page-item"{% endif %}>
+              <a class="page-link" href="{{ path('jevislaevts_culturels_homepage', {'page': p}) }}">{{ p }}</a>
+            </li>
+        {% endfor %}
+    {% set pageAvant = page + 1  %}
+    <li class="page-item">
+        <a class="page-link" href="{{ path('jevislaevts_culturels_homepage', {'page': pageAvant}) }}">&raquo;</a>
+    </li>
+</ul>

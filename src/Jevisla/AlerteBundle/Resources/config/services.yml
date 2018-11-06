@@ -1,0 +1,35 @@
+services:
+#    jevisla_alerte.example:
+#        class: Jevisla\AlerteBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+ 
+  jevisla_alerte.antispam:
+      class: Jevisla\AlerteBundle\Antispam\JevislaAntispam
+      arguments:
+          - "@mailer"
+          - %locale%
+          - 50
+
+  jevisla_alerte.email.reponse_mailer:
+      class: Jevisla\AlerteBundle\Email\ReponseMailer
+      arguments:
+          - "@mailer"
+
+  jevisla_alerte.doctrine_listener.reponse_creation:
+    class: Jevisla\AlerteBundle\DoctrineListener\ReponseCreationListener
+    arguments:
+      - "@jevisla_alerte.email.reponse_mailer"
+    tags:
+      - { name: doctrine.event_listener, event: postPersist }
+      
+  jevisla_alerte.purger.alerte:
+      class: Jevisla\AlerteBundle\Purger\Alerte\JevislaPurgeAlerte  
+      arguments:
+        - "@doctrine.orm.entity_manager"
+        
+  jevisla_alerte.ckeditor:
+      class: Jevisla\AlerteBundle\Form\CkeditorType
+      tags: 
+        - { name: form.type, alias: ckeditor } 
+        
+  

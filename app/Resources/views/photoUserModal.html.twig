@@ -1,0 +1,8 @@
+{# empty Twig template #}
+{% if is_granted("IS_AUTHENTICATED_FULLY") %}  
+    <div class="modal" id="photoUserShow">
+            <span class="close"></span>
+            <img id="imageUserVoisin" class="modal-content imgModalPhotoUser" alt="photoVoisin" src="" height="auto" title="Profil"/>
+            <br><div id="caption" class="majuscules"></div>
+    </div>
+{% endif%}

@@ -1,0 +1,10 @@
+services:
+#    jevisla_map.example:
+#        class: Jevisla\MapBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    jevisla_map.ckeditor:
+          class: Jevisla\MapBundle\Form\CkeditorType
+          tags: 
+            - { name: form.type, alias: ckeditor }  
+    

@@ -1,0 +1,20 @@
+<div id="nivelle" class="row">
+    {% for alerte in listAlertes %}
+        <div class="img-thumbnail col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+           {{ render(controller("JevislaAlerteBundle:Alerte:alertesAccueil", {'id': alerte.id})) }}  
+        </div>
+    {% else %}
+        <div>Pas (encore !) d'alertes</div>
+    {% endfor %}
+</div><br>
+<div class="">
+    <div class="col-lg-3 col-md-4 col-xs-6 col-sm-6">
+        <a class="btn btn-info btn-lg btn-block" href="{{ path('jevisla_alerte_home') }}">
+            <span class="toutesMesAlertes glyphicon glyphicon-info-sign"></span>
+            <br> <span  class="toutesMesAlertes">Toutes les alertes</span>
+        </a>
+    </div>
+</div>
+
+ 
+    

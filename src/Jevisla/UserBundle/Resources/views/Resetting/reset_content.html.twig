@@ -1,0 +1,29 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="vertical-offset-180">
+    <div class="row slider">
+        <div class="col-md-offset-3 col-md-6 col-md-offset-3">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Renouvellement mot de passe
+                    </h3>
+                </div>  
+                <div class="panel-body">
+                    {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+                        <div class="col-md-10">
+                            {{ form_widget(form) }}
+                        </div>
+                        <div class="col-md-3">
+                            <input type="submit" value="{{ 'resetting.reset.submit'|trans }}" />
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+            <div style="margin-top: 100px;"></div>    
+        </div>
+    </div>                    
+</div>
+
+
+ 

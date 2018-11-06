@@ -1,0 +1,65 @@
+<div id="qui">
+    <div class="actualitesAccueil">
+        <div class="jumbotron">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="choixActionAccueilTitle">Tableau de bord </h1>
+                </div>
+            </div>
+        </div>  
+        <span class="labelAlertesAccueil col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offset-2 col-xs-8">
+            Parcourez votre activité, vos alertes, vos annonces, <br>
+            les non lus de votre messagerie quartier, <br>
+            les derniers messages et discussions.
+        </span><br>
+        <div id="accordion" class="row styleAccordionGeneral">
+            <div class="panel-body"> 
+                <div>
+                    {% if is_granted("IS_AUTHENTICATED_FULLY") %}    
+                        <a class="theColor col-md-3 col-sm-6 col-xs-12 collapsed tabBord reponse" href="#zoneAlertesReponses" data-toggle="collapse">
+                            <i class="glyphicon glyphicon-folder-open styleIconeGeneral styleIconeGeneralFolder"></i><br>
+                            <h1 class="panel-title sizeTabBord">
+                                <span class="colorTitle">Mes alertes</span> 
+                            </h1> 
+                        </a>    
+                        <a class="theColor col-md-3 col-sm-6 col-xs-12 collapsed tabBord reponse" href="#zoneMessagesNonLus" data-toggle="collapse">
+                            <i class="glyphicon glyphicon-envelope styleIconeGeneral styleIconeGeneralEnvelop"></i><br>
+                            <h1 class="panel-title sizeTabBord">
+                                <span class="colorTitle">Messagerie</span>  
+                            </h1> 
+                        </a>
+                    {% endif %}
+                    <a class="theColor col-md-3 col-sm-6 col-xs-12 collapsed tabBord reponse" href="#zoneDerMessages" data-toggle="collapse">
+                        <i class="glyphicon glyphicon-comment styleIconeGeneral styleIconeGeneralComment"></i><br>
+                         <h1 class="panel-title sizeTabBord">
+                              <span class="colorTitle">Derniers messages(F)</span> 
+                        </h1> 
+                    </a>
+                    <a class="theColor col-md-3 col-sm-6 col-xs-12 collapsed tabBord reponse" href="#zoneDerSujets" data-toggle="collapse">
+                        <i class="glyphicon glyphicon-envelope styleIconeGeneral styleIconeGeneralEnveloppe"></i><br>
+                        <h1 class="panel-title sizeTabBord">
+                            <span class="colorTitle">Derniers sujets(F)</span> 
+                        </h1> 
+                    </a> 
+                </div>
+                <br>
+                <div class="">
+                    <div id="zoneDerMessages" class="collapse afficheGeneralActualites" data-parent="#accordion"> 
+                        {{ render(controller('JevislaForumsBundle:Recents:recentsPosts')) }}
+                    </div>
+                    <div id="zoneDerSujets" class="collapse afficheGeneralActualites" data-parent="#accordion">  
+                        {{ render(controller('JevislaForumsBundle:Recents:recentsTopics')) }}
+                    </div>
+                    {% if is_granted("IS_AUTHENTICATED_FULLY") %} 
+                        <div id="zoneAlertesReponses" class="collapse afficheGeneralActualites"  data-parent="#accordion">
+                            {{ render(controller("JevislaAlerteBundle:Alerte:alertesReponsesAccueil", {'author': app.user.username})) }}
+                        </div>
+                        <div id="zoneMessagesNonLus" class="collapse afficheGeneralActualites"  data-parent="#accordion">
+                            {{ render(controller("JevislaMessagerieBundle:Messagerie:messagesNonLusAccueil")) }}
+                        </div>
+                    {% endif %} 
+                </div>
+            </div> 
+        </div>
+    </div>    
+</div>

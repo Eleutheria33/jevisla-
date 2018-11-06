@@ -1,0 +1,77 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% if error %}
+    <div class="alert alert-danger col-md-6 col-md-offset-5">
+        {{ error.messageKey|trans(error.messageData, 'security') }}
+    </div>
+{% endif %}
+<div class="container slider">
+    <div class="row">
+        <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+            <div class="">
+                <div class="">
+                    <div class="textWelcomeInscription col-md-12 col-sm-12 col-xs-12">
+                        <span>
+                            Pas encore inscrit ?
+                        </span>  
+                    </div>
+                    <div class="textWelcomeInscription col-md-12 col-sm-12 col-xs-12">
+                        <span > 
+                            Rejoignez votre 
+                            <span class="jevislaVignette">
+                                JeVisLa
+                            </span>
+                        </span>
+                    </div>
+                    <div class="col-md-4 col-sm-3 col-xs-3">
+                        <a class="btn btn-info jeMinscris" href="{{ path('fos_user_registration_register') }}">
+                            Je m'inscris
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+            <div class="textWelcomeInscriptionMobile">
+                <div class="">
+                    <h3 class="textWelcomeInscription">
+                        Connexion
+                    </h3>
+                </div>
+                <div class="">
+                    <form action="{{ path("fos_user_security_check") }}" method="post">
+                        {% if csrf_token %}
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                        {% endif %}
+                        <div class="col-md-12">
+                            <label class="col-md-8 col-sm-12 col-xs-12 textLabelInscriptionMobile" for="username">{{ 'security.login.username'|trans }}/{{ 'security.login.email'|trans }}</label> 
+                            <input class="col-md-8 col-sm-10 col-xs-10" type="text" id="username" name="_username" value="{{ last_username }}" required="required" /> 
+                        </div>
+                        <div class="col-md-12 margeLoginUser">
+                            <label class="col-md-8 col-sm-8 col-xs-8 textLabelInscriptionMobile" for="password">{{ 'security.login.password'|trans }}</label> 
+                            <input class="col-md-8 col-sm-10 col-xs-10" type="password" id="password" name="_password" required="required" /><br> 
+                        </div>
+                        <div class="col-md-12 margeLoginUser">
+                            <label class="col-md-8 col-sm-8 col-xs-8 textLabelInscriptionMobile" for="remember_me">{{ 'security.login.remember_me'|trans }}</label> 
+                            <input class="col-md-8 col-sm-8 col-xs-8" type="checkbox" id="remember_me" name="_remember_me" checked="checked" value="on" />
+                        </div><br> 
+                        <div class="col-md-12 col-sm-12 col-xs-12 margeLoginUser">    
+                            <input class="col-md-3 col-sm-4 col-xs-4 btn btn-md btn-info" type="submit" id="_submit" name="_submit" value="Entrer" />
+                        </div><br>
+                    </form>
+                        </br></br>   
+                    <div class="col-md-8 col-sm-8 col-xs-8 margeLoginUser">
+                        <a href="{{ path('fos_user_resetting_request') }}" style="color:blue"> Mot de passe perdu ?</a>        
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>
+
+
+
+
+

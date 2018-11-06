@@ -1,0 +1,25 @@
+  
+<div class="well">
+    <div>
+        {# On vérifie qu'une image soit bien associée à l'article #}
+        {% if alerte.imageAlerte is not null %}
+            <img  
+              src="{{ alerte.imageAlerte.webPath | imagine_filter('thumb_alerteAC') }}"
+              alt="{{ alerte.imageAlerte.alt }}"
+            />
+        {% else %}  
+            <img 
+              src="{{ 'uploads/img/jevisla2.jpg' | imagine_filter('thumb_alerteAC') }}"
+              alt=" alerte jevislà "
+            />  
+        {% endif %}
+    </div>
+    <h4>{{ alerte.title }}</h4>
+    <i>Par {{ alerte.author }}, le {{ alerte.date|date('d/m/Y') }}</i>
+</div>
+
+   
+
+   
+
+

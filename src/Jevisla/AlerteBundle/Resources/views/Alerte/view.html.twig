@@ -1,0 +1,111 @@
+{% extends "JevislaAlerteBundle::layout.html.twig" %}
+
+{% block title %}
+  Lecture d'une alerte - {{ parent() }}
+{% endblock %}
+{% block bodyAlerte %}
+    {{ app.session.set('alerteId', alerte.id ) }}  
+    <div>
+        {# On vérifie qu'une image soit bien associée à l'article #}
+        {% if alerte.imageAlerte is not null %}
+            <img class="imgAlerteView"
+              src="{{ asset(alerte.imageAlerte.webPath) }}"
+              alt="{{ alerte.imageAlerte.alt }}"
+            />
+        {% else %}  
+              <img class="imgAlerteView"
+                src="{{ asset('uploads/img/jevisla2.jpg') }}"
+                alt=" alerte jevislà "
+              />    
+        {% endif %}
+    </div>
+    <h2>{{ alerte.title }}</h2>
+    <i>Par {{ alerte.author }}, le {{ alerte.date|date('d/m/Y') }}</i>
+    <div class="well contentAlertesAccueil">
+        {{ alerte.content|raw }} 
+    </div>
+    {% if not alerte.categories.empty %}
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title">Cette alerte est parue dans les catégories suivantes :</h2>
+            </div>
+            <div class="panel-body">    
+                {% for category in alerte.categories %}
+                    <div class="label label-info contentAlertesAccueil">{{ category.name }}{% if not loop.last %}, {% endif %}</div>
+                {% endfor %}    
+            </div>    
+       </div>
+    {% endif %}
+    {% if listAlerteSkills|length > 0 %}
+        <div>
+          Cette alerte requiert les compétences suivantes :
+            <ul>
+              {% for alerteSkill in listAlerteSkills %}
+                <li>{{ alerteSkill.skill.name }} : niveau {{ alerteSkill.level }}</li>
+              {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    <p>
+        <a href="{{ path('jevisla_alerte_home') }}" class="btn btn-info">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour à la liste
+        </a>
+        {% if  is_granted("IS_AUTHENTICATED_FULLY")  %}    
+            {% if  alerte.author == app.user.pseudo  %}    
+                <a href="{{ path('jevisla_alerte_edit', {'id': alerte.id}) }}" class="btn btn-success">
+                    <i class="glyphicon glyphicon-edit"></i>
+                    Modifier l'alerte...
+                </a>
+                <a data-toggle="modal" href="{{ path('jevisla_alerte_delete', {'id': alerte.id}) }}" class="btn btn-danger">
+                    <i class="glyphicon glyphicon-trash"></i>
+                    Supprimer l'alerte...
+                </a>    
+            {% endif  %}  
+          
+            <a id="reponse" href="#zoneReponse" class="btn btn-warning" data-toggle="collapse">
+                <i class="glyphicon glyphicon-edit"></i>
+                Répondre à cette alerte...
+            </a>  
+        {% endif  %}
+    </p>
+    <div id="zoneReponse" class="collapse">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0">
+                <div class="panel panel-success">
+                    <div class="panel panel-heading ">
+                        <h3 class="panel-title" > Répondre  </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row "> 
+                  {{ render(controller("JevislaAlerteBundle:Alerte:repondre", {'id' : alerte.id})) }} 
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </div>
+    </div>   
+    {% if not alerte.reponses.empty %}
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title"> Toutes les réponses</h2>
+            </div>
+            <div class="panel-body">  
+                {% for reponse in listResponses %}
+                    <div class="row reponseViewAlerteUser">
+                        <div class="col-md-3 reponseViewAlerteUser">
+                            <img class="imgReponse img-thumbnail imgViewAlerte" src="{{ getObjetImageUser(reponse.authorId).webPath | imagine_filter('thumb_alerte') }}" alt="{{ getObjetImageUser(reponse.authorId).alt }}" title="Profil"/>   
+                            <span class="alertViewImg">{{ reponse.author|capitalize }} </span>
+                            <br>  
+                            <p class="alertViewDate">Le {{ reponse.date|date("d/m/Y à h.m.s", "Europe/Paris") }} </p>
+                        </div>
+                        <div class="alertViewRespons col-md-8">    
+                        {{ reponse.content|raw }}{% if not loop.last %}  {% endif %}
+                        </div>     
+                    </div>
+                {% endfor %}    
+            </div>    
+        </div>
+    {% endif %}
+{% endblock %}  
+

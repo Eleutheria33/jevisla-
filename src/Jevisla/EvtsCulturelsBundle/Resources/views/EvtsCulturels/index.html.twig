@@ -1,0 +1,200 @@
+{% extends "JevislaEvtsCulturelsBundle::layout.html.twig" %}
+{% block title %}
+ {{ parent() }} : Evénements Culturels  
+{% endblock %}
+{% block evtsCulturels %}
+<div class="container slider">
+    <div class=row">
+        <div class="blocEvCul col-lg-5 col-md-5 col-sm-5 col-xs-12">
+            <div id="moveSearch" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-info searchCom">
+                    <div class="panel-heading">
+                        <h2 class="panel-title"> Rechercher d'autres événements (ailleurs)  </h2>
+                    </div>
+                    <div class="panel-body"> 
+                        <form action="{{ path('jevislaevts_culturels_homepage') }}" method="post">  
+                            <div class="">
+                                <div >
+                                    <label for="commune" class="eventCultuColor"> 
+                                        De la commune 
+                                    </label>
+                                    <br> 
+                                    <input  name="deptCom" class="" id="commune" placeholder="Commune : département" type="text" pattern="^[A-Za-zÀ-ÖØ-öø-ÿ-_. ]+ : [A-Za-zÀ-ÖØ-öø-ÿ-_. ]+$" required="required" title="Sélectionnez dans l'aide le format 'commune : département'"> 
+                                    <input name="commune"  id="communeC" type="hidden" required="required">
+                                    <input name="dept"  id="deptC" type="hidden" required="required">
+                                    <span class="buttonload">
+                                        <i class="fa fa-spinner fa-spin"></i> 
+                                    </span>
+                                </div><br>
+
+                                <div class="col-md-offset-1 col-xs-offset-1 col-ms-offset-1 row">
+                                    <label for="distance" class="eventCultuColor"> 
+                                        et pour les <span id="radius" class="eventCultuKm"></span>
+                                        KM alentour 
+                                    </label> 
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                        <input name="distance" type="range" min="1" max="99" value="50" class="sliderD" id="myRange">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="col-md-offset-1 col-xs-offset-1 col-ms-offset-1">
+                                    <div class="row">    
+                                        <div class="col-md-6">
+                                            <input type="text" required id="datepicker" placeholder="Date début" name="dateD">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" required id="datepicker2" placeholder="Date fin" name="dateF">
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
+                            <br> 
+                            <input id="recupCommune" class="btn btn-info col-md-offset-1 " type="submit" value="Afficher" >
+                        </form>
+                        <div class="col-lg-12">
+                            <a id="reset" class="btn btn-info col-md-4 pull-right" href="{{ path('jevislaevts_culturels_homepage', {'page' : 1000}) }}">
+                                Chez moi
+                            </a>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            <div id="moveMap" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pull-left">
+                <div class="panel panel-info searchCom">
+                    <div class="panel-heading">
+                        <h2 class="panel-title"> Localisation de l'événement culturel  </h2>
+                    </div>
+                    <div class="panel-body"> 
+                        <div id="mapCulturel"></div>
+                    </div>
+                </div>   
+            </div>  
+        </div> 
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">                        
+            <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">            
+                {% include 'JevislaEvtsCulturelsBundle:EvtsCulturels:pagination.html.twig' %}     
+            </div>
+            <div class="row col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                <ul style="list-style-type: none; ">
+                    <div id="accordion"  class="panel-group">   
+                        {%  for evtCulturels in  evtsCulturels.data %}
+                            <div class="panel panel-primary"> 
+                                <a class="okSelect" data-lat="{{ evtCulturels.locations[0].latitude }}" data-lng="{{ evtCulturels.locations[0].longitude }}"  style="text-decoration: none;" href="#{{ evtCulturels.uid|replace({'1' : 'A', '2' : "B", '3' : "C", '4' : "D", '5' : "E", '6' : "F", '7' : "G", '8' : "H", '9' : "I"}) }}" data-toggle="collapse"> 
+                                    <div class="panel panel-primary"> 
+                                        <div class="panel-heading"> 
+                                            <h2 class="panel-title">
+                                                <div class="glyphicon glyphicon-star-empty pull-left" style="height: 40px;">
+                                                    &nbsp
+                                                </div>
+                                                <div class="sizeEvetCult">
+                                                    {% if  evtCulturels.title.fr is defined %} 
+                                                        {{ evtCulturels.title.fr }}
+                                                    {% else %}
+                                                        {{ evtCulturels.spacetimeinfo }}
+                                                    {% endif %}
+                                                    {% if  evtCulturels.locations[0].city is defined %}
+                                                        à {{ evtCulturels.locations[0].city }}
+                                                    {% endif %}
+                                                    {% if  evtCulturels.locations[0].postalCode is defined %} 
+                                                        {{ evtCulturels.locations[0].postalCode }}
+                                                    {% endif %} 
+                                                </div>
+                                            </h2>
+                                        </div>
+                                    </div> 
+                                </a> 
+                                <div id="{{ evtCulturels.uid|replace({'1' : 'A', '2' : "B", '3' : "C", '4' : "D", '5' : "E", '6' : "F", '7' : "G", '8' : "H", '9' : "I"}) }}" class="collapse" data-parent="#accordion">     
+                                    <div class="panel-body">     
+                                        <li>
+                                            <div class="row">     
+                                                <img class="col-md-12 resizeImg" src=" {% if  evtCulturels.image is defined %} {{ 'https:' ~ evtCulturels.image }} {% else %} {{ asset('uploads/img/jevisla2.jpg') }} {% endif %}" alt=''>
+                                                <div class="col-md-12"> 
+                                                    <span class="sizeEvetCultContent">
+                                                        {% if  evtCulturels.freeText.fr is not null %}
+                                                            <br>
+                                                            <div class="contentCult"> 
+                                                                 {{ evtCulturels.freeText.fr|raw }}
+                                                            </div>
+                                                        {% endif %}
+                                                        <br> 
+                                                        <div class="adressCult">
+                                                            {% if  evtCulturels.description.fr is defined %} 
+                                                                {{ evtCulturels.description.fr }}
+                                                            {% endif %} 
+                                                            <br> 
+                                                            {% if  evtCulturels.locations[0].placename is defined %} 
+                                                                {{ evtCulturels.locations[0].placename }} 
+                                                            {% endif %}
+                                                            <br>
+                                                            {% if  evtCulturels.locations[0].postalCode is defined %}
+                                                                {{ evtCulturels.locations[0].postalCode }}
+                                                            {% endif %}
+                                                            <br>
+                                                            <span id="adresseCom">
+                                                                {% if  evtCulturels.locations[0].address is defined %} 
+                                                                    {{ evtCulturels.locations[0].address }}
+                                                                {% endif %}
+                                                            <span>
+                                                            <br>
+                                                            {% if  evtCulturels.locations[0].department is defined %}
+                                                                {{ evtCulturels.locations[0].department }} 
+                                                            {% endif %}
+                                                            <br>
+                                                            {% if  evtCulturels.locations[0].region is defined %}
+                                                                {{ evtCulturels.locations[0].region }} 
+                                                            {% endif %}
+                                                            <br>
+                                                            <div class="pull-right">
+                                                                {% if  evtCulturels.locations[0].pricingInfo is defined %}
+                                                                    <span class="conditionsEnter">{{ evtCulturels.locations[0].pricingInfo.fr }}</span> 
+                                                                {% endif %}
+                                                            </div>
+                                                            <br>
+                                                            <div>
+                                                                {% if  evtCulturels.locations[0].ticketLink is defined %}
+                                                                    {% set site = evtCulturels.locations[0].ticketLink |split(',', 3) %}
+                                                                    <span>Contact :</span>
+                                                                    {%  for contact in site %}  
+                                                                        <div>
+                                                                             {% set contact = contact|trim %}   
+                                                                             {% set testContact = contact|slice(0, 4) %}  
+                                                                             {% if testContact == 'http'  %}
+                                                                                <a class="dateEventCulturel btn btn-info" target="_blank" href="{{ contact }}">Site web</a> 
+                                                                             {% else %}
+                                                                                 <span> {{ contact }}</span>
+                                                                             {% endif  %}    
+                                                                        </div>
+                                                                    {%  endfor %} 
+                                                                {% endif %}
+                                                            </div>
+                                                            <br>
+                                                            </div><br>    
+                                                        {%  for date in  evtCulturels.locations[0].dates %}  
+                                                            <div>
+                                                                <span class="dateEventCulturel col-md-offset-5 label label-default">
+                                                                    {{ getNewDate(date.date, 'ymd')  }}
+                                                                    de {{ date.timeStart }}
+                                                                    jusqu'à {{ date.timeEnd }}
+                                                                </span>
+                                                            </div>
+                                                        {%  endfor %} 
+                                                    </span>
+                                                </div>    
+                                            </div>
+                                            <br>
+                                            <a class="btn btn-info" target="_blank" href="{{ evtCulturels.link }}" >
+                                                  Plus d'infos
+                                             </a>
+                                        </li> 
+                                    </div>
+                                </div>          
+                            </div> 
+                        {% endfor  %}
+                    </div> 
+                </ul>
+            </div>        
+        </div>
+    </div>        
+</div> 
+{% endblock evtsCulturels %}
+ 

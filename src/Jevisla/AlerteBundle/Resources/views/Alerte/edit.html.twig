@@ -1,0 +1,19 @@
+{# src/Jevisla/AlerteBundle/Resources/views/edit.html.twig #}
+
+{% extends "JevislaAlerteBundle::layout.html.twig" %}
+
+{% block title %}
+    Modification alerte - {{ parent() }}
+{% endblock %}
+{% block entete %}  
+    <div class="container slider">
+        <div class="panel panel-info alertePanel">
+            <div  class="panel-heading">
+                <h1 class="panel-title alerteGestionTitle">Modification</h1>
+            </div>
+        </div>
+    </div>  
+{% endblock entete %} 
+{% block body %}
+    {{ include("JevislaAlerteBundle:Alerte:form.html.twig") }}
+{% endblock %}

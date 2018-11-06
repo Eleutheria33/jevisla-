@@ -1,0 +1,101 @@
+{{ form_start(form, { 'action': path('jevisla_map_ficheUserGM'), 'attr': { 'class': 'jevisla_map_ficheUserGM' } }) }}
+    <div class="col-lg-offset-1 col-md-10">
+        <div class="panel panel-info">
+            <div class="panel-heading ">
+                <h3 class="panel-title ">
+                    Personnage
+                </h3>
+            </div>
+            <div class="panel-body FGM">  
+                <div class="form-group">
+                    {# Génération du label. #}
+                    {{ form_label(form.Avatar, "Avatar", {'label_attr': {'class': 'col-md-12 control-label'}}) }}
+                    {{ form_label(form.Avatar, "Taille max du fichier : 2M", {'label_attr': {'class': 'col-md-12 control-label'}}) }}
+                    {# Affichage des erreurs pour ce champ précis. #}
+                    {{ form_errors(form.Avatar) }}
+                    <div class="col-sm-12">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.Avatar, {'attr': {'class': 'form-control'}}) }}
+                    </div><br>
+                 </div> 
+                <div class="form-group slider">
+                    {# Génération du label. #}
+                    {{ form_label(form.pseudo1, "Pseudonyme", {'label_attr': {'class': 'col-sm-12 control-label'}}) }}
+                    {# Affichage des erreurs pour ce champ précis. #}
+                    {{ form_errors(form.pseudo1) }}
+                    <div class="col-sm-10">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.pseudo1, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div> 
+                <div class="form-group">
+                    {# Génération du label. #}
+                    {{ form_label(form.devise, "Devise", {'label_attr': {'class': 'col-sm-12 control-label'}}) }}
+                    {# Affichage des erreurs pour ce champ précis. #}
+                    {{ form_errors(form.devise) }}
+                    <div class="col-sm-10">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.devise, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>       
+                <div class="form-group">
+                    {# Génération du label. #}
+                    {{ form_label(form.texte, "Texte de présentation", {'label_attr': {'class': 'col-sm-12 control-label ckeditor'}}) }}
+                    {# Affichage des erreurs pour ce champ précis. #}
+                    {{ form_errors(form.texte) }}
+                    <div class="col-sm-12">
+                       {# Génération de l'input. #}
+                       {{ form_widget(form.texte, {'attr': {'class': 'form-control ckeditor'}}) }}
+                    </div>
+                </div>
+            </div> 
+        </div>        
+    </div>            
+    <div class="col-lg-offset-1 col-md-10">
+        <div class="panel panel-info">
+            <div class="panel-heading ">
+                <h3 class="panel-title ">
+                    Contact
+                </h3>
+            </div>
+            <div class="panel-body FGM">
+                <div class="form-group">
+                    {# Génération du label. #}
+                    {{ form_label(form.phone, "Téléphone(portable)", {'label_attr': {'class': 'col-sm-12 control-label'}}) }}
+                    {# Affichage des erreurs pour ce champ précis. #}
+                    {{ form_errors(form.phone) }}
+                    <div class="col-sm-12">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>    
+                <div class="form-group">
+                    {# Génération du label. #}
+                    {{ form_label(form.mail, "Adresse mail", {'label_attr': {'class': 'col-sm-12 control-label'}}) }}
+                    {# Affichage des erreurs pour ce champ précis. #}
+                    {{ form_errors(form.mail) }}
+                    <div class="col-sm-12">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.mail, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>   
+                <div class="form-group">
+                    {# Génération du label. #}
+                    {{ form_label(form.adresse, "Adresse", {'label_attr': {'class': 'col-sm-12 control-label'}}) }}
+                    {# Affichage des erreurs pour ce champ précis. #}
+                    {{ form_errors(form.adresse) }}
+                    <div class="col-sm-10">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.adresse, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                 </div>       
+            </div> 
+        </div>        
+    </div>
+    <br>       
+    {{ form_label(form.valider, "Valider", {'label_attr': {'class': 'control-label'}}) }}
+    <div class="col-md-4 pull-left">
+        {{ form_widget(form.valider, {'attr': {'class': 'btn btn-info'}}) }}              
+    </div> 
+{{ form_end(form) }}  
+                

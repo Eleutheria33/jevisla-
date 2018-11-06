@@ -1,0 +1,458 @@
+{# empty Twig template #}
+{% extends "JevislaChatRoomBundle::layout.html.twig" %}
+
+{% block chat %}
+    <body> 
+        <div class="container">    
+            <div class="chat-container chatContainerBorder">
+                <aside class="chat-sidebar">
+                    <nav class="chat-right-sidebar">
+                        <span class="chatSidebar">jevisla Chat</span>
+                        <ul id="ws-channels-list" class="channels-list"></ul>
+                        <input class="chat-areaTopic" type="text" name="channel" id="ajout-channel" placeholder="Créer channel">     
+                        <button class="chat-btnTopic btn btn-lg btn-md btn-sm btn-xs btn-info" type="submit" id="channel-submit"/>Go</button>
+                    </nav>
+                </aside>
+                <main class="main-content">
+                    <header class="main-content-header">
+                        <aside class="user-menu col-md-offset-1 col-md-2 col-xs-offset-0 col-xs-2">
+                            <i id="ws-connection-status" class="connection-status"></i>
+                            <span class="username" id="ws-username"></span>
+                        </aside>
+                    </header>
+                    <div id="ws-content-receiver" class="chat-messages-list"></div>
+                    <input type="text" name="chat-message" class="chat-areaInput" id="ws-content-to-send" placeholder="Saisissez votre message"><br>  
+                    <button class="chat-btnTopic btn btn-lg btn-md btn-sm btn-xs btn-info" type="submit" id="ws-send-content">Envoyer</button>
+                </main>
+            </div>
+        </div>    
+        <footer class="chat-footer">
+            Réalisé à Bordeaux par <a href="#"> l'équipe de JeVisLà </a> |
+            &copy; All rights reserved - {{ 'now'|date('Y') }}
+        </footer>
+    </body>  
+{% endblock chat %} 
+
+{% block javascripts %}   
+  {{ parent() }}  
+<script>
+    
+
+    // Initialize user
+    var _connectionStatus = document.getElementById('ws-connection-status');
+    var _userName = document.getElementById('ws-username');
+    // Initialize form
+    var _textInput = document.getElementById('ws-content-to-send');
+    var _textSender = document.getElementById('ws-send-content');
+    var _channelsList = document.getElementById('ws-channels-list');
+    var _receiver = document.getElementById('ws-content-receiver');
+    var enterKeyCode = 13;
+    var pseudo = ''; 
+     
+    var defaultChannel = 'general';
+    var channelActif = '';
+    var botName = 'ChatBot'; 
+    var nomUser = "{{ app.user.username }}";
+    var userPostal = "{{ app.user.codePostal }}";
+    var urlUser = "{{ asset(getObjetImageUser(app.user.id).webPath) }}";
+    var idUser =  "{{ app.user.id }}";
+    var portPostal =  "{{ app.user.codePostal }}";
+    var clientInformation = {
+        username : nomUser,
+        url : urlUser,
+        id : idUser,
+        action: 'message',
+        channel: channelActif,
+        user: nomUser,
+        message: 'message'
+    };
+    // fonction de démarrage du chat
+    $(document).ready(function(){
+        $(".close").click(function() {
+        $(".alert").hide("slow");
+        }); 
+            // Mini API pour envoyer et intégrer des messages dans le flux du chat.
+            var Chat = {
+                // formate et ajoute un message
+                appendMessage: function(username, message, url, id, action, channel){
+                    var from;
+                    var dateN = date_time(); 
+                    if(id === idUser){
+                        from = pseudo;
+                    }    
+                    else {
+                        from = username;
+                    }
+                    // Append List Item
+                    var spanNom = document.createElement("span");
+                    var spanMes = document.createElement("p");
+                    var spanDateH = document.createElement("span");
+                    var container = document.createElement("div");
+                    var content = document.createElement("div");
+                    var entet = document.createElement("div");
+                    //image modal clic sur l'image
+                    var myModal = document.createElement("div");
+                        myModal.setAttribute('id', "myModal");
+                        myModal.classList.add("modal"); 
+                    var myModalSpan = document.createElement("span");
+                        myModalSpan.classList.add("close"); 
+                    var myModalSImg = document.createElement("img");
+                        myModalSImg.classList.add("modal-content"); 
+                        myModalSImg.setAttribute('id', "img01");
+                    var myModalDiv = document.createElement("div");
+                        myModalDiv.setAttribute('id', "caption");
+                    myModal.prepend(myModalDiv);
+                    myModal.prepend(myModalSImg);
+                    myModal.prepend(myModalSpan);
+                     //création du message
+                    var entete = from + ' le ' + dateN ;    
+                    spanNom.prepend(document.createTextNode(entete));
+                    spanDateH.prepend(document.createTextNode(dateN));
+                    //spanNom.style.border = '1px ' + ' groove ' + ' #'+(Math.random()*0xFFFFFF<<0).toString(16);
+                    spanNom.style.color = '#63b0ce';
+                    spanMes.prepend(document.createTextNode( message ));
+                    spanMes.style.border = '1px ' + ' groove ' + ' #'+(Math.random()*0xFFFFFF<<0).toString(16);
+                    //constitution de l'image  -------------------------------------------
+                    var imageImg = new Image();
+                    imageImg.classList.add("picture");
+                    //imageImg.style.maxHeight = "100px";
+                    imageImg.style.width = "80px";
+                    imageImg.style.height = "50px";
+                    imageImg.title = "Posté par " + from + " le " + dateN;
+                    if (url === undefined) {
+                        imageImg.src= urlUser;
+                    } else {
+                        imageImg.src= url;  
+                    }
+                    console.log(imageImg.src);
+                    // fin de constitution de l'image -----------------------------------
+                    imageImg.setAttribute('id', "myImg"); 
+                    // constitution des classes message    
+                    entet.classList.add("row", "col-lg-12", "col-md-12", "col-sm-12", "col-xs-12");
+                    imageImg.classList.add("col-lg-2", "col-md-2", "col-sm-7", "col-xs-7");
+                    spanMes.classList.add("col-lg-12", "col-md-12", "col-sm-12", "col-xs-12", "messageU");
+                    spanNom.classList.add("nomChat");
+                    spanDateH.classList.add("dateChat", "col-lg-12", "col-md-12", "col-sm-12", "col-xs-12");
+                    content.classList.add("content", "col-lg-10","col-md-10","col-sm-10", "col-xs-12" );
+                    container.classList.add("row", "conteneur", "col-lg-12", "col-md-12", "col-sm-12", "col-xs-12"); 
+                    spanMes.classList.add("ligneMess");
+                    // déplacement de la photo selon l'intervenant user à gauche : correspondant à droite
+                    //entet.prepend(spanNom);
+                    spanMes.prepend(spanNom);
+                    content.prepend(spanMes);
+                    //content.prepend(entet);
+                    var cbody = document.querySelector("body");
+                    cbody.prepend(myModal);
+                    if(id === idUser){
+                        container.prepend(content);
+                        container.prepend(imageImg);
+                    } else {
+                        // test de l'appareil utilisé mobile ou pc (utilisation des matchMedia de javascript)
+                        if (window.matchMedia("(max-width: 768px)").matches) {
+                            /* La largeur maximale de l'affichage est 768 px inclus */
+                            container.prepend(content);
+                            container.prepend(imageImg);
+                          } else {
+                            container.prepend(imageImg);
+                            container.prepend(content);
+                        }
+                       
+                    } 
+                    if(id === idUser){
+                        content.classList.add("left");    
+                    } else {
+                       content.classList.add("right");   
+                    }
+                    // affichage image modale au clic sur photo
+                    imageImg.addEventListener("click", function(){
+                        var modal = document.getElementById('myModal');
+                        var modalImg = document.getElementById("img01");
+                        var captionText = document.getElementById("caption");
+                        modal.style.display = "block";
+                        modalImg.src = this.src;
+                        captionText.innerHTML = "<span style='font-size:30px; font-weight:bolder;'>" + username + '</span>';
+                    });
+                    // When the user clicks on <span> (x), close the modal
+                    myModalSpan.addEventListener("click", function(){
+                        var modal = document.getElementById('myModal');
+                        modal.style.display = "none";
+                    });
+                    return container;
+                },
+                sendMessage: function(text){
+                    //formatage et envoi du message avec récupération du channel actif
+                    clientInformation.message = text;
+                    clientInformation.action = 'message';
+                    clientInformation.channel = channelActif;
+                    clientInformation.user = pseudo;
+                    clientInformation.id = idUser;
+                    console.log(clientInformation) + console.log('parti -->');
+                    conn.send(JSON.stringify(clientInformation));
+                },
+                sendChannel: function(newCanal){
+                    //récupération du channel actif
+                    clientInformation.action = 'createChannel';
+                    clientInformation.channel = newCanal;
+                    // Send info as JSON
+                    conn.send(JSON.stringify(clientInformation));
+                }
+            }; // fin chat
+            // fonction de récupération et d'envoi du message
+            var sendTextInputContent = function () {
+                // Get text input content
+                var content = _textInput.value;
+                // Check content
+                if (content.length < 1) {
+                  return;
+                }
+                Chat.sendMessage(content);
+                // Reset input
+                _textInput.value = '';
+            };
+            // réception du message et affichage de celui-ci  avec classe channel
+            var addMessageToChannel = function(data) {
+                //var chatChannel = document.querySelector('.chat-messages-list'); 
+                console.log(data) + console.log("arrivée de la clôture");
+                console.log(data.url) + console.log(data.id) + console.log("contrôle");
+                var divChannel = document.createElement("span");
+                divChannel.classList.add(data.channel); 
+                divChannel.classList.add('allMessage'); 
+                divChannel.prepend(Chat.appendMessage(data.username, data.message, data.url, data.id, data.action, data.channel));
+                _receiver.prepend(divChannel);
+            };
+            
+            /**
+             * Send a message from ChatBot to #general channel
+             *
+             * @param {string} message - Message to display
+             * @param {string} messageClass - CSS class to add to message
+             */    
+            var botMessageToGeneral = function (message, messageClass) {
+                return addMessageToChannel({
+                    action: 'message',
+                    channel: defaultChannel,
+                    username: botName,
+                    message: message,
+                    id: "{{ app.user.id }}",
+                    messageClass: messageClass
+                });
+            };
+
+            /**
+             * "Disable" form input and button
+             */
+            var disableFormAndWsConnection = function () {
+                // Disable form input and button
+                _textInput.classList.add('disabled');
+                _textSender.classList.add('disabled');
+
+                // Mark connection has offline
+                _connectionStatus.classList.remove('active');
+            };
+            
+            document.getElementById("channel-submit").addEventListener("click",function(){
+                if ($('#ajout-channel').val() !== '') {
+                    addChannel();
+                    ajoutEcouteurChannels();
+                    channelActif = $('#ajout-channel').val();
+                    activeDesactive();
+                    Chat.sendChannel(channelActif);
+                    activateChannel(channelActif);
+                    $('#ajout-channel').val('');
+                    displayChannels(channelActif);
+                }
+            }); 
+            
+           
+            /**
+              * Add channel in channels list
+              *
+              * @param {string} channel - Channel name
+              */
+            var addChannel = function(channel) {
+                
+                if (channel === undefined) {   
+                    var channel = $('#ajout-channel').val();  
+                } 
+                 // Initialize
+                var _channel = '#' + channel;
+                // Add channel to list
+                _channelsList.innerHTML += '<li class="liSujet">' +
+                    '<a href="' + _channel + '">' + _channel + '</a>' +
+                  '</li>';
+            };     
+            
+            // parcours des channels créés et création d'écouteur pour activer ou désactiver les chats 
+            var ajoutEcouteurChannels = function (){
+            // Add active class to the current button (highlight it)
+                var header = document.getElementById("ws-channels-list");
+                var channels = header.getElementsByClassName("liSujet");
+                    for (var i = 0; i < channels.length; i++) {
+                        channels[i].addEventListener("click", function() {
+                            activeDesactive();
+                            this.className += " active";
+                            var maClasse = $('.active a').text();
+                            var chan = maClasse.substring(1, );
+                            channelActif = chan;
+                            displayChannels(channelActif);
+                        });
+                    }      
+            };
+            // désactive le chat en cours
+            var activeDesactive = function () {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");    
+            };
+            var miseAjourChannels = function(canaux) {
+                $('#ws-channels-list').empty();
+                for (var canal in canaux) {
+                addChannel(canal);       
+                };
+                ajoutEcouteurChannels();
+                activateChannel(channelActif);
+            };
+            
+            /**
+              * Activate a given channel
+              *
+              * @param {string} channel - Channel name
+              */
+            var activateChannel = function(channel) {
+                //displayChannels();
+                // Initialize
+                var _channel = '#' + channel;
+                // Get channel
+                console.log(_channel);
+                var _chanLink = document.querySelectorAll('a[href="' + _channel + '"]');
+                // Activate parent list item
+                _chanLink[0].parentElement.classList.add('active');
+                //displayChannels();
+                console.log(_chanLink);
+            }; 
+            
+                       
+            // document.getElementById('liste_verti').display = 'none';
+            var displayChannels = function(canalActif) {
+            // Add active class to the current button (highlight it)
+                //var header = document.getElementById("ws-channels-list");
+                var allMessages = _receiver.getElementsByClassName("allMessage");
+                    for (var i = 0; i < allMessages.length; i++) {
+                        allMessages[i].style.display = "none"; 
+                    }    
+                var actifsMessages = _receiver.getElementsByClassName(canalActif);
+                    for (var i = 0; i < actifsMessages.length; i++) {
+                        actifsMessages[i].style.display = "block"; 
+                    }      
+            };     
+            // Ask user's name, l'utilisateur peut utiliser un nouveau pseudo uniquement pour le chat 
+            pseudo = prompt('Salut ! Vous pouvez chater masqué, choisissez votre pseudo :)');
+                if (pseudo === null || pseudo === ''){
+                    pseudo = "{{ app.user.username }}";     
+                } 
+                _userName.innerHTML = pseudo;
+           // Initialize WebSocket création de la connexion websocket
+            var locAdress = window.location.host;
+            console.log(window.location);
+                if (locAdress === "localhost") {
+                    var conn = new WebSocket('ws://localhost:8705');   
+                } else {
+                    var conn = new WebSocket('ws://prope-me.com:8705');    
+                } 
+            botMessageToGeneral('Vous êtes connecté(e)...', '');  
+            // Bind form events
+                _textSender.onclick = sendTextInputContent;
+                _textInput.onkeyup = function(e) {
+                 // Check for Enter key
+                if (e.keyCode === enterKeyCode) {
+                    sendTextInputContent(e);
+                }
+               };
+// les fonctions classiques de la relation websocket (onopen ; onclose ; onmessage ; onerror  
+            conn.onopen = function(e) {
+                channelActif = defaultChannel ;
+                _connectionStatus.classList.add('active');
+                _textInput.classList.remove('disabled');
+                _textSender.classList.remove('disabled');  
+                // Add default channel in channels list
+                clientInformation.message = " est connecté(e)"; 
+                console.info("Connection established succesfully");
+                clientInformation.action = 'subscribe';
+                clientInformation.channel = channelActif;
+                clientInformation.user = pseudo;
+                addChannel(channelActif);
+                activateChannel(channelActif); 
+                conn.send(JSON.stringify(clientInformation));
+            };
+            conn.onclose = function(e) {
+                botMessageToGeneral('Connexion close', 'disabled');
+                disableFormAndWsConnection();
+                clientInformation.channel = channelActif;
+                clientInformation.user = pseudo;
+                clientInformation.id = idUser;
+                clientInformation.url = urlUser;
+                clientInformation.action = 'unsubscribe';
+                clientInformation.message = " est déconnecté(e)"; 
+                console.log(clientInformation) + console.log("départ clôture");
+            
+                conn.send(JSON.stringify(clientInformation));
+            };
+            
+            //conn.close();  
+            $("#close-chat").click(function(){
+                $("#leChat").css("display", "none");
+                $("#start-chat").css("display", "block");
+                $("#close-chat").css("display", "none");
+                clientInformation.message = " est déconnecté(e)"; 
+                console.info("Connection close succesfully");
+                conn.send(JSON.stringify(clientInformation));
+                window.location.reload();      
+            });
+            // l'on reçoit la reponse du serveur (from, message, url) envoyé par conn.send 
+            conn.onmessage = function(e) {
+                var data = JSON.parse(e.data);
+                console.log(data) +  console.log("reçu");
+                console.log(data.channels);
+                miseAjourChannels(data.channels);
+                addMessageToChannel(data);
+                console.log(data)  +  console.log("ok");
+            };
+            conn.onerror = function(e){
+                botMessageToGeneral('An error occured!', 'error');
+                disableFormAndWsConnection();
+                alert("Error: something went wrong with the socket.");
+                console.error(e);
+            };
+            // END SOCKET CONFIG  
+    }); // fin $document ready
+    
+    // élaboration de la date d'affichage par message
+    function date_time()
+        {
+        date = new Date;
+        year = date.getFullYear();
+        hearShort = date.getFullYear();
+        month = date.getMonth();
+        months = new Array('Janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre');
+        d = date.getDate();
+        day = date.getDay();
+        days = new Array('dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi');
+        h = date.getHours();
+            if(h<10) {
+                h = "0"+h;
+            }
+        m = date.getMinutes();
+            if(m<10) {
+                m = "0"+m;
+            }
+        s = date.getSeconds();
+            if(s<10) {
+                s = "0"+s;
+            }
+        //result = 'Le '+days[day]+' '+d+' '+months[month]+' '+year+' à '+h+':'+m+':'+s;
+        result = d+' '+months[month]+' '+hearShort+'-'+h+':'+m+':'+s;
+        setTimeout('date_time();','1000');
+        return result;
+        }
+    
+</script>
+{% endblock javascripts %}

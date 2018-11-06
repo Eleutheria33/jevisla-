@@ -1,0 +1,81 @@
+<div>
+    <div class="mySlides">
+        <div class="numbertext">
+            1 / 6
+        </div>
+        <img src="{{ asset('img/carteMessagerie.jpg') }}" alt="Carte">
+    </div>
+    <div class="mySlides">
+        <div class="numbertext">
+            2 / 6
+        </div>
+        <img src="{{ asset('img/alertes.jpg') }}" alt="Alertes" >
+    </div>
+    <div class="mySlides">
+        <div class="numbertext">
+            3 / 6
+        </div>
+        <img src="{{ asset('img/messagerieJevisla.jpg') }}"  alt="Messagerie">
+    </div>
+    <div class="mySlides">
+        <div class="numbertext">
+            4 / 6
+        </div>
+        <img src="{{ asset('img/chatroomJevisla.jpg') }}" alt="Chatroom">
+    </div>
+    <div class="mySlides">
+        <div class="numbertext">
+            5 / 6
+        </div>
+        <img src="{{ asset('img/evenementsCulturelsJevisla.jpg') }}" alt="eventsCulturels">
+    </div>
+    <div class="mySlides">
+        <div class="numbertext">
+            6 / 7
+        </div>
+        <img src="{{ asset('img/forumsJevisla.jpg') }}" alt="Forums">
+    </div>
+    <div class="mySlides">
+        <div class="numbertext">
+            7 / 8
+        </div>
+        <img src="{{ asset('img/reponseAnnonceJevisla.jpg') }}" alt="repondreAlerte">
+    </div>
+    <div class="mySlides">
+        <div class="numbertext">
+            8 / 8
+        </div>
+        <img src="{{ asset('img/menuJeVisLa.jpg') }}" alt="Le menu JeVisLà">
+    </div>
+    <a class="prev" onclick="plusSlides(-1);">❮</a>
+    <a class="next" onclick="plusSlides(1);">❯</a>
+    <div class="caption-container">
+        <p id="captionCarousel"></p>
+    </div>
+    <div class="container">
+        <div class="carous">
+             <img class="demo cursor" src="{{ asset('img/carteMessagerie.jpg' | imagine_filter('my_thumb'))  }}" style="width:100%" onclick="currentSlide(1);" alt="Une carte de votre quartier avec vos voisins membres JeVisLà. Vous sélectionnez la personne de votre choix, et vous lui laissez un message.">
+        </div>
+        <div class="carous">
+             <img class="demo cursor" src="{{ asset('img/alertes.jpg' | imagine_filter('my_thumb')) }}" style="width:100%" onclick="currentSlide(2);" alt="Des alertes, des offres, des demandes d'aide, des ventes, des achats, des sorties, des différends, des soirées, etc. Tout devient possible près de chez soi...">
+        </div>
+        <div class="carous">
+             <img class="demo cursor" src="{{ asset('img/messagerieJevisla.jpg' | imagine_filter('my_thumb')) }}" style="width:100%" onclick="currentSlide(3);" alt="Une messagerie rapide & conviviale avec vos voisins, pour régler des différends, avertir courtoisement, demander de l'assistance ou des nouvelles... ">
+        </div>
+        <div class="carous">
+            <img class="demo cursor" src="{{ asset('img/chatroomJevisla.jpg' | imagine_filter('my_thumb')) }}" style="width:100%" onclick="currentSlide(4);" alt="Un chat pour des discussions instantanées, par canton, quartier, ville ou département. Organisez des sorties, des rendez-vous en quelques clics.">
+        </div>
+        <div class="carous">
+            <img class="demo cursor" src="{{ asset('img/evenementsCulturelsJevisla.jpg' | imagine_filter('my_thumb')) }}" style="width:100%" onclick="currentSlide(5);" alt="Découvrez les événements culturels près de chez vous ou ailleurs. Toute l'actualité artistique à deux pas de chez vous. ">
+        </div>    
+        <div class="carous">
+            <img class="demo cursor" src="{{ asset('img/forumsJevisla.jpg' | imagine_filter('my_thumb')) }}" style="width:100%" onclick="currentSlide(6);" alt="Des forums pour évoquer tous les sujets de vie de votre environnement. L'espace, le bruit, les sorties, les nouvelles, le sport. Tout s'y discute !">
+        </div>
+        <div class="carous">
+            <img class="demo cursor" src="{{ asset('img/reponseAnnonceJevisla.jpg' | imagine_filter('my_thumb')) }}" style="width:100%" onclick="currentSlide(7);" alt="Répondez aux annonces, aux alertes directement sur JeVisLà. Une communication simple et rapide.">
+        </div>
+        <div class="carous">
+            <img class="demo cursor" src="{{ asset('img/menuJeVisLa.jpg' | imagine_filter('my_thumb') )}}" style="width:100%" onclick="currentSlide(8);" alt="Un menu dynamique pour toutes les fonctionnalités JeVisLa.">
+        </div>  
+    </div>
+</div>        

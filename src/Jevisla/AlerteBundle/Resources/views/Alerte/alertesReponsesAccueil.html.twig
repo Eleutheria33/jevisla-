@@ -1,0 +1,57 @@
+{# src/Jevisla/AlerteBundle/Resources/views/Alerte/index.html.twig #}
+<div class="panel-body">
+    <div class="row">
+        <p class="col-lg-offset-2 col-lg-7 col-md-offset-2 col-md-7 col-xs-offset-1 col-xs-10 col-xs-offset-1 label label-success">
+            Vous avez {{ app.user.nbAlertes }} alerte(s) <br> dont {{ listAlertesReponses|length }} avec réponse(s)
+        </p>
+        <div class="panel-body">
+            {% for alerte in listAlertesReponses %}
+                <a href="{{ path('jevisla_alerte_view', {'id': alerte.id}) }}">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h2 class="panel-title"> {{ alerte.title | raw }}</h2>
+                                {% if alerte.imageAlerte is not null %}
+                                    <img  
+                                      src="{{ alerte.imageAlerte.webPath | imagine_filter('thumb_alerteAC') }}"
+                                      alt="{{ alerte.imageAlerte.alt }}"
+                                    />
+                                {% else %}  
+                                    <img 
+                                      src="{{ 'uploads/img/jevisla2.jpg' | imagine_filter('thumb_alerteAC') }}"
+                                      alt=" alerte jevislà "
+                                    />  
+                                {% endif %}
+                            </div>
+                            <div class="panel-body">
+                                <div class="panel panel-danger">
+                                    <div class="panel-heading">
+                                        <h2 class="panel-title">Réponse(s)</h2>
+                                    </div>
+                                </div> 
+                                <div class="panel-body">
+                                    {% for reponse in alerte.reponses %}
+                                       <span>Par {{ reponse.author }} </span> <br>
+                                       <span> Le {{ reponse.date|date("d-m-y à H:i:s") }} </span>
+                                       <span> {{ reponse.content | raw }} </span> 
+                                    {% endfor %}  
+                                </div> 
+                            </div>    
+                        </div> 
+                    </div>    
+                </a>
+            {% else %}
+                 
+            {% endfor %}
+        </div>
+        <div class="">
+            <div class="col-lg-3 col-md-4 col-xs-10 col-sm-6">
+                <a type="submit" class="btn btn-info btn-lg btn-block" href="{{ path('jevisla_alerte_author', {'page': '1','authorId': app.user.id}) }}">
+                    <span class="glyphicon glyphicon-info-sign"></span>
+                    <br>Toutes mes alertes
+                </a>
+            </div>
+        </div> 
+    </div>
+</div>
+     

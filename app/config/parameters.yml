@@ -1,0 +1,13 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: localhost
+    database_port: null
+    database_name: jevisla
+    database_user: root
+    database_password: null
+    mailer_transport: mail
+    mailer_host: auth.smtp.1and1.fr
+    mailer_user: administration@jevisla.prope-me.com
+    mailer_password: Calicles_33
+    secret: ThisTokenIsNotSoSecretChangeIt
+    session_max_idle_time : 1800

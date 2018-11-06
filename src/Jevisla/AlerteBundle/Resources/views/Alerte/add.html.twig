@@ -1,0 +1,23 @@
+{# src/Jevisla/AlerteBundle/Resources/views/add.html.twig #}
+
+{% extends "JevislaAlerteBundle::layout.html.twig" %}
+
+{% block title %}
+    Création alerte - {{ parent() }}
+{% endblock %}
+{% block entete %} 
+    <div class="container">
+        <div class="col-md-offset-4 col-md-4 slider">
+            <div class="panel panel-info alertePanel">
+                <div  class="panel-heading">
+                    <h2 class="panel-title alertePanelTitle">Création Alerte</h2>
+                </div>
+            </div>
+        </div>
+    </div>    
+{% endblock entete %} 
+{% block body %}
+    <div class="container">
+        {{ include("JevislaAlerteBundle:Alerte:form.html.twig") }}
+    </div>
+{% endblock %}

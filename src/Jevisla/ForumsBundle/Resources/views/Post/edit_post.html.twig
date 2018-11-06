@@ -1,0 +1,28 @@
+{% extends "@DForum/layout.html.twig" %}
+{% block title %}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+   <link rel="stylesheet" href="{{ asset('bundles/dforum/css/post.css') }}" type="text/css" />
+{% endblock %}
+{% block Fbody %}
+    <div id="editPosts" class="container">
+        <h1 class="text-center label label-danger">{{ 'discutea.forum.post.editpost'|trans }}</h1>
+        <ul id="postsList" class="list-unstyled">
+            {% if postpreview %}
+               {% include 'DForumBundle:Post:preview-post.html.twig' %}
+            {% endif %}
+        </ul>
+        {% if form is not null %}
+            {% include 'DForumBundle:Form:Post.html.twig' %}
+        {% endif %}
+        <div class="clearfix"></div>
+    </div>
+{% endblock %}
+{% block js %}
+        {% if app.user %}
+            <script src="{{ asset('bundles/dforum/js/post.js') }}"></script>
+            {% if is_granted('ROLE_MODERATOR') %}
+                <script src="{{ asset('bundles/dforum/js/moderator/post.js') }}"></script>   
+            {% endif %}
+        {% endif %}
+{% endblock %}
